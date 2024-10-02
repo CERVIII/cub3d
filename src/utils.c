@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:46:16 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/01 15:11:47 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:00:30 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,20 @@ void	init_data(t_data *data)
 
 void	free_all(t_data *data)
 {
-	free(data->map);
+	free(data->file);
+	free(data->no);
+	free(data->so);
+	free(data->we);
+	free(data->ea);
+	free(data->f);
+	free(data->c);
 	free(data);
 }
 
 int	ft_error(char *error, t_data *data)
 {
 	ft_putstr_fd(RED, 1);
+	ft_putstr_fd("Error: ", 1);
 	ft_putstr_fd(error, 1);
 	ft_putstr_fd(NORMAL, 1);
 	if (data)

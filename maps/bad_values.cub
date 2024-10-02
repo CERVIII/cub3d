@@ -1,0 +1,12 @@
+WE ./textures/bluestone.xpm
+C 225,155,0
+NO ./textures/redbrick.xpm
+SO ./textures/colorstone.xpm
+110101010N
+F 10,30 ,40
+EA ./textures/wrong.xpm
+
+101
+1N1
+
+111

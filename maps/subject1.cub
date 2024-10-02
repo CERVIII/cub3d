@@ -1,0 +1,13 @@
+SO ./textures/colorstone.xpm
+NO ./textures/redbrick.xpm
+WE ./textures/greystone.xpm
+EA ./textures/bluestone.xpm
+
+F 112,112,112
+C 56,56,56
+
+111111
+100101
+101001
+1100N1
+111111

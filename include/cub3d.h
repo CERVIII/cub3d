@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/01 15:13:17 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:59:10 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define CYAN  "\x1B[36m"
 # define WHITE  "\x1B[37m"
 
+/* MAC */
 # define A 0
 # define S 1
 # define D 2
@@ -57,6 +58,17 @@
 # define UP 126
 # define ESC 53
 
+/* LINUX */
+# define A_L 97
+# define W_L 119
+# define D_L 100
+# define S_L 115
+# define L 65361
+# define U 65362
+# define R 65363
+# define DW 65364
+# define ESC_L 65307
+
 /* ERROR */
 # define ERR_ARG "Not valid arguments\n"
 # define ERR_NAME "The name is very short"
@@ -65,12 +77,21 @@
 # define ERR_PERM "Do not have permission to read this file\n"
 # define ERR_OPEN "Error opening file\n"
 # define ERR_EMPTY "Empty file\n"
+# define ERR_TEXT "Invalid value for textures and colors\n"
 
 typedef struct s_data
 {
 	int		fd;
+	char	**file;
 	char	**map;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*f;
+	char	*c;
 }	t_data;
+
 
 /* UTILS.C */
 void	init_data(t_data *data);
@@ -80,6 +101,8 @@ int		ft_error(char *error, t_data *data);
 void	check_arg(int argc, char **argv);
 void	check_file(char *argv, t_data *data);
 void	read_write_file(t_data *data);
+void	check_texture(t_data *data);
+char	*save_texture(char *texture);
 void	parser(int argc, char **argv, t_data *data);
 
 #endif

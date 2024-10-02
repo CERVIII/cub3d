@@ -6,13 +6,14 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2024/10/01 16:17:41 by pcervill         ###   ########.fr        #
+#    Updated: 2024/10/02 13:51:01 by pcervill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I ./include -I ./libft -I $(MLX_DIR) -g -g3 -fsanitize=address
+CFLAGS =	-Wall -Werror -Wextra -I ./include -I ./libft -I $(MLX_DIR) \
+			#-g -g3 -fsanitize=address
 
 RM = rm -f
 
@@ -64,7 +65,7 @@ $(OBJ_DIR)%.o: $(GME_DIR)%.c
 # basic library compiled
 $(NAME): $(OBJ)
 	@echo " \033[33m[ .. ] | Compiling minilibx..\033[0m"
-	@$(MAKE) -C $(MLX_DIR) > /dev/null 2>&1 
+	@$(MAKE) -C $(MLX_DIR) > /dev/null 2>&1
 	@echo " \033[32m[ OK ] | ✅ Minilibx ready! ✅\033[0m"
 	@echo " \033[33m[ .. ] | Compiling libft..\033[0m"
 	@make -C $(LIBFT_DIR) --silent
@@ -84,7 +85,7 @@ fclean: clean
 	@$(RM) $(NAME)
 	@make fclean -C libft --silent
 	@rm -rf $(OBJ_DIR)
-	@make clean -C $(MLX_DIR) --silent
+	@make clean -C $(MLX_DIR) > /dev/null 2>&1
 	@echo " \033[35m[ OK ] | 🧹 $(NAME)! 🧹\033[0m"
 
 re:	fclean all
