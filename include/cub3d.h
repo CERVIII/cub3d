@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/03 14:06:52 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:10:38 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	read_write_file(t_data *data);
 void	check_texture(t_data *data);
 char	*save_texture(char *texture, t_data *data);
 int		*save_color(char *texture, t_data *data);
+void	check_map(t_data *data);
 void	parser(int argc, char **argv, t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:32:09 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/03 14:33:56 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:18:17 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 
 	init_data(&data);
 	parser(argc, argv, &data);
-	print_texture(&data);
+//	print_texture(&data);
 //	print_map(&data);
 	free_all(&data);
 	return (0);

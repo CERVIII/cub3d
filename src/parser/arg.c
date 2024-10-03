@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:42:23 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/03 14:29:57 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:31:51 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,29 +115,60 @@ int	*save_color(char *texture, t_data *data)
 {
 	char	**cpyline;
 	int		*result;
-	char	*aux;
+	char	*line;
 	int		i;
-	int		num;
 
 	result = (int *)ft_calloc(sizeof(int), 3);
-	cpyline = ft_split(texture, ' ');
-	aux = ft_strtrim(cpyline[1], " \t\n\r");
-	i = 0;
-	while (cpyline[i])
-		free(cpyline[i++]);
-	free(cpyline);
-	cpyline = ft_split(aux, ',');
-	i = 0;
-	while (i < 3)
+	line = ft_substr(texture, 1, (ft_strlen(texture) - 1));
+	cpyline = ft_split(line, ',');
+	free(line);
+	i = -1;
+	while (++i < 3)
 	{
-		num = ft_atoi(cpyline[i]);
-		if (num >= 0 && num <= 255)
-			result[i] = num;
+		if (ft_atoi(cpyline[i]) >= 0 && ft_atoi(cpyline[i]) <= 255)
+			result[i] = ft_atoi(cpyline[i]);
 		else
+		{
+			while (cpyline[i])
+				free(cpyline[i++]);
+			free(cpyline);
 			ft_error(ERR_COL, data, NULL);
+		}
+		free(cpyline[i]);
+	}
+	free(cpyline);
+	return (result);
+}
+
+void	check_map(t_data *data)
+{
+	int		i;
+	int		j;
+	int		k;
+//	char	**map;
+
+	i = 6;
+	j = 0;
+	printf("file[%d]: %d\n", i, data->file[i][0]);
+	while (data->file[i])
+	{
+		j++;
 		i++;
 	}
-	return (result);
+	printf("line map: %d\n", j);
+//	map = (char *)ft_calloc(sizeof(char), j);
+	i = 6;
+	j = 0;
+	while (data->file[i])
+	{
+		k = 0;
+		while (data->file[i][k])
+			data->map[j][k] = data->file[i][k];
+		j++;
+		k++;
+		i++;
+	}
+	return ;
 }
 
 void	parser(int argc, char **argv, t_data *data)
@@ -146,6 +177,7 @@ void	parser(int argc, char **argv, t_data *data)
 	check_file(argv[1], data);
 	read_write_file(data);
 	check_texture(data);
+	check_map(data);
 	return ;
 }
 
