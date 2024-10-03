@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/02 15:59:10 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:06:52 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,15 @@
 # define ESC_L 65307
 
 /* ERROR */
-# define ERR_ARG "Not valid arguments\n"
+# define ERR_ARG "Not valid arguments"
 # define ERR_NAME "The name is very short"
-# define ERR_EXT "The .cub extension is needed\n"
-# define ERR_FD "The file does not exist\n"
-# define ERR_PERM "Do not have permission to read this file\n"
-# define ERR_OPEN "Error opening file\n"
-# define ERR_EMPTY "Empty file\n"
-# define ERR_TEXT "Invalid value for textures and colors\n"
+# define ERR_EXT "The .cub extension is needed"
+# define ERR_FD "The file does not exist "
+# define ERR_READ "Do not have permission to read this file "
+# define ERR_OPEN "Error opening file "
+# define ERR_EMPTY "Empty file"
+# define ERR_TEXT "Invalid value for textures and colors"
+# define ERR_COL "Floor or ceiling value's are not numbers"
 
 typedef struct s_data
 {
@@ -88,21 +89,23 @@ typedef struct s_data
 	char	*so;
 	char	*we;
 	char	*ea;
-	char	*f;
-	char	*c;
+	int		*f;
+	int		*c;
 }	t_data;
 
 
 /* UTILS.C */
 void	init_data(t_data *data);
-int		ft_error(char *error, t_data *data);
+void	free_all(t_data *data);
+int		ft_error(char *error, t_data *data, char *file);
 
 /* ARG.C */
 void	check_arg(int argc, char **argv);
 void	check_file(char *argv, t_data *data);
 void	read_write_file(t_data *data);
 void	check_texture(t_data *data);
-char	*save_texture(char *texture);
+char	*save_texture(char *texture, t_data *data);
+int		*save_color(char *texture, t_data *data);
 void	parser(int argc, char **argv, t_data *data);
 
 #endif

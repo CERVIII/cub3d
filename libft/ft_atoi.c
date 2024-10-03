@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcervill <pcervill@student.42madrid>       +#+  +:+       +#+        */
+/*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 22:59:20 by pcervill          #+#    #+#             */
-/*   Updated: 2022/04/07 12:45:51 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:39:34 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int	snumber(unsigned long int number, int sign)
 {
 	if (number > 2147483648 && sign == 1)
-		number = 0;
+		number = -1;
 	else if (number > 2147483647 && sign != 1)
 		number = -1;
 	return (number);
@@ -37,9 +37,12 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	number = 0;
-	while (*str >= '0' && *str <= '9')
+	while (*str)
 	{
-		number = 10 * number + (*str - 48);
+		if (*str <= '0' && *str >= '9')
+			return (-1);
+		else
+			number = 10 * number + (*str - 48);
 		str++;
 	}
 	number = snumber(number, sign);
