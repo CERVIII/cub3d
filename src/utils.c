@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:46:16 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/03 13:07:01 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:01:40 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	free_all(t_data *data)
 	i = 0;
 	if (data->map)
 	{
-		while (data->map[i])
+		while (data->map[i] != NULL)
 			free(data->map[i++]);
 		free(data->map);
 	}

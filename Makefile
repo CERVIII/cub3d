@@ -6,19 +6,19 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2024/10/03 16:16:17 by pcervill         ###   ########.fr        #
+#    Updated: 2024/10/08 12:25:02 by pcervill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = gcc
 CFLAGS =	-Wall -Werror -Wextra -I ./include -I ./libft -I $(MLX_DIR) \
-			#-g -g3 -fsanitize=address
+			-g -g3 -fsanitize=address
 
 RM = rm -f
 
 SRC_SRC =	main.c utils.c
-PRS_SRC =	arg.c
+PRS_SRC =	parser.c parser_file.c parser_texture.c parser_map.c
 GME_SRC =	
 
 ifeq ($(UNAME),Darwin)

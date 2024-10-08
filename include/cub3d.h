@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/03 16:10:38 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:24:14 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,14 +99,23 @@ void	init_data(t_data *data);
 void	free_all(t_data *data);
 int		ft_error(char *error, t_data *data, char *file);
 
-/* ARG.C */
+/* PARSER.C */
+void	parser(int argc, char **argv, t_data *data);
+
+/* PARSER_FILE */
 void	check_arg(int argc, char **argv);
 void	check_file(char *argv, t_data *data);
 void	read_write_file(t_data *data);
-void	check_texture(t_data *data);
+void	parser_file(int argc, char **argv, t_data *data);
+
+/* PARSER_TEXTURE */
 char	*save_texture(char *texture, t_data *data);
 int		*save_color(char *texture, t_data *data);
-void	check_map(t_data *data);
-void	parser(int argc, char **argv, t_data *data);
+void	parser_texture(t_data *data);
+
+
+/* PARSER_MAP */
+void	parser_map(t_data *data);
+void	copy_map(t_data *data);
 
 #endif
