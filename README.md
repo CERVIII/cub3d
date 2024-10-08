@@ -62,7 +62,7 @@ make
 Esto generará el ejecutable `cub3D`. Para ejecutar el programa con un archivo de escena, utiliza el siguiente comando:
 
 ```
-./cub3D archivo.cub
+./cub3D <archivo>/<nombre_fichero.cub>
 ```
 
 ¡Diviértete explorando el laberinto en 3D!
