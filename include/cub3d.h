@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/08 12:24:14 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/08 13:58:08 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@
 # define ERR_FD "The file does not exist "
 # define ERR_READ "Do not have permission to read this file "
 # define ERR_OPEN "Error opening file "
+# define ERR_LMAP "Empty line in map is not allowed."
 # define ERR_EMPTY "Empty file"
 # define ERR_TEXT "Invalid value for textures and colors"
 # define ERR_COL "Floor or ceiling value's are not numbers"
@@ -105,6 +106,7 @@ void	parser(int argc, char **argv, t_data *data);
 /* PARSER_FILE */
 void	check_arg(int argc, char **argv);
 void	check_file(char *argv, t_data *data);
+void	verify_blank_line(char *line);
 void	read_write_file(t_data *data);
 void	parser_file(int argc, char **argv, t_data *data);
 

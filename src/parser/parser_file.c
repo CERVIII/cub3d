@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:10:04 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/08 12:20:13 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/08 14:09:14 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,22 @@ void	check_file(char *argv, t_data *data)
 		ft_error(ERR_OPEN, NULL, argv);
 }
 
+void	verify_blank_line(char *line)
+{
+	static unsigned int	count = 0;
+	static int			enter = 0;
+	static int			exit = 0;
+
+	if (count == 6 && ft_strlen(line) > 1 && !enter)
+		enter = 1;
+	if (count < 6 && ft_strlen(line) > 1)
+		count++;
+	if (enter && ft_strlen(ft_strtrim(line, " \t")) == 1 && !exit)
+		exit++;
+	if ((ft_strlen(line) > 1 || *line != '\n') && exit)
+		ft_error(ERR_LMAP, NULL, NULL);
+}
+
 void	read_write_file(t_data *data)
 {
 	char	*newline;
@@ -49,6 +65,7 @@ void	read_write_file(t_data *data)
 	free(aux);
 	while (1)
 	{
+		verify_blank_line(newline);
 		free(newline);
 		newline = get_next_line(data->fd);
 		if (!newline)
@@ -61,7 +78,6 @@ void	read_write_file(t_data *data)
 	data->file = ft_split(strmap, '\n');
 	free(strmap);
 	free(newline);
-	close(data->fd);
 }
 
 void	parser_file(int argc, char **argv, t_data *data)
@@ -69,4 +85,5 @@ void	parser_file(int argc, char **argv, t_data *data)
 	check_arg(argc, argv);
 	check_file(argv[1], data);
 	read_write_file(data);
+	close(data->fd);
 }
