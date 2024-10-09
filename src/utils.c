@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:46:16 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/09 10:49:16 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:47:11 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	init_data(t_data *data)
 	data->ea = NULL;
 	data->f = NULL;
 	data->c = NULL;
+	data->heigh = 0;
+	data->width = 0;
 	return ;
 }
 

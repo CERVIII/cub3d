@@ -8,7 +8,7 @@
 			"type": "lldb",
 			"request": "launch",
 			"name": "Debug",
-			"program": "${workspaceFolder}/Cub3d",
+			"program": "${workspaceFolder}/cub3D",
 			"args": ["maps/arena.cub"],
 			"cwd": "${workspaceFolder}"
 		}
