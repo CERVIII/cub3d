@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/09 13:16:43 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:33:45 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
 # endif
+
+# define WALL_SIZE 64
 
 /* # define PJ "./Sprites/Pacman_HD.xpm"
 # define PJL "./Sprites/pac_semi_left.xpm"
@@ -73,7 +75,10 @@
 # define ESC_L 65307
 
 /* UTILS.C */
+int		get_heigh(char **map);
+int		get_width(char **map);
 void	init_data(t_data *data);
+void	free_array(char **str);
 void	free_all(t_data *data);
 int		ft_error(char *error, t_data *data, char *file);
 

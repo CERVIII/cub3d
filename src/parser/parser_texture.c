@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:42:23 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/08 12:16:52 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:02:41 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	*save_color(char *texture, t_data *data)
 	line = ft_substr(texture, 1, (ft_strlen(texture) - 1));
 	cpyline = ft_split(line, ',');
 	free(line);
+	if (get_heigh(cpyline) != 3)
+		ft_error(ERR_NCOL, data, NULL);
 	i = -1;
 	while (++i < 3)
 	{
@@ -52,14 +54,11 @@ int	*save_color(char *texture, t_data *data)
 			result[i] = ft_atoi(cpyline[i]);
 		else
 		{
-			while (cpyline[i])
-				free(cpyline[i++]);
-			free(cpyline);
+			free_array(cpyline);
 			ft_error(ERR_COL, data, NULL);
 		}
-		free(cpyline[i]);
 	}
-	free(cpyline);
+	free_array(cpyline);
 	return (result);
 }
 

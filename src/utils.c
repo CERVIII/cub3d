@@ -6,11 +6,39 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:46:16 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/09 12:47:11 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:32:17 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	get_heigh(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+int	get_width(char **map)
+{
+	int	j;
+	int	width;
+
+	width = INT_MIN;
+	while (*map)
+	{
+		j = 0;
+		while ((*map)[j])
+			j++;
+		if (width < j)
+			width = j;
+		map++;
+	}
+	return (width);
+}
 
 void	init_data(t_data *data)
 {
@@ -25,7 +53,19 @@ void	init_data(t_data *data)
 	data->c = NULL;
 	data->heigh = 0;
 	data->width = 0;
+	data->player_x = 0;
+	data->player_y = 0;
 	return ;
+}
+
+void	free_array(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		free(str[i++]);
+	free(str);
 }
 
 void	free_texture(t_data *data)
@@ -47,22 +87,10 @@ void	free_texture(t_data *data)
 
 void	free_all(t_data *data)
 {
-	int	i;
-
-	i = 0;
 	if (data->file)
-	{
-		while (data->file[i])
-			free(data->file[i++]);
-		free(data->file);
-	}
-	i = 0;
+		free_array(data->file);
 	if (data->map)
-	{
-		while (data->map[i] != NULL)
-			free(data->map[i++]);
-		free(data->map);
-	}
+		free_array(data->map);
 	free_texture(data);
 	return ;
 }

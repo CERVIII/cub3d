@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:33 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/09 14:04:46 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:31:50 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define ERR_LMAP "Empty line in map is not allowed."
 # define ERR_EMPTY "Empty file"
 # define ERR_TEXT "Invalid value for textures and colors"
+# define ERR_NCOL "Value for colors must be in R,G,B"
 # define ERR_COL "Floor or ceiling value's are not numbers"
 # define ERR_CMAP "Invalid characters detected"
 # define ERR_NPL "No player position detected"
@@ -41,6 +42,8 @@ typedef struct s_data
 	int		*c;
 	int		heigh;
 	int		width;
+	int		player_x;
+	int		player_y;
 }	t_data;
 
 /* PARSER.C */
@@ -60,8 +63,6 @@ void	parser_texture(t_data *data);
 
 
 /* PARSER_MAP */
-int		get_heigh(char **map);
-int		get_width(char **map);
 void	init_map(t_data *data, char **map);
 void	copy_map(t_data *data, char **map);
 void	check_map(char **map, t_data *data);

@@ -6,40 +6,11 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:10:21 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/09 14:02:17 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:41:30 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	get_heigh(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	return (i);
-}
-
-int	get_width(char **map)
-{
-	int	j;
-	int	width;
-
-	width = INT_MIN;
-	while (*map)
-	{
-		j = 0;
-		while ((*map)[j])
-			j++;
-		if (width < j)
-			width = j;
-		map++;
-	}
-	return (width);
-}
-
 
 void	init_map(t_data *data, char **map)
 {
@@ -81,25 +52,41 @@ void	copy_map(t_data *data, char **map)
 	return ;
 }
 
+int	check_player(char **map, int x, int y, t_data *data)
+{
+	if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'S'
+		|| map[y][x] == 'E' || map[y][x] == 'W')
+	{
+		data->player_x = (x * WALL_SIZE) + (WALL_SIZE / 2);
+		data->player_y = (y * WALL_SIZE) + (WALL_SIZE / 2);
+		return (1);
+	}
+	return (0);
+}
+
 void	check_map(char **map, t_data *data)
 {
-	int	i;
-	int	j;
+	int	y;
+	int	x;
+	int	player;
 
-	i = 0;
-	while (map[i])
+	y = -1;
+	while (map[++y])
 	{
-		j = 0;
-		while (map[i][j])
+		x = -1;
+		while (map[y][++x])
 		{
-			if (map[i][j] != ' ' && map[i][j] != 'N' && map[i][j] != 'S'
-				&& map[i][j] != 'S' && map[i][j] != 'E' && map[i][j] != 'W'
-				&& map[i][j] != '1' && map[i][j] != '0')
+			if (map[y][x] != ' ' && map[y][x] != 'N' && map[y][x] != 'S'
+				&& map[y][x] != 'S' && map[y][x] != 'E' && map[y][x] != 'W'
+				&& map[y][x] != '1' && map[y][x] != '0')
 				ft_error(ERR_CMAP, data, NULL);
-			j++;
+			player += check_player(map, x, y, data);
 		}
-		i++;
 	}
+	if (player > 1)
+		ft_error(ERR_MPL, data, NULL);
+	if (player < 1)
+		ft_error(ERR_NPL, data, NULL);
 }
 
 void	parser_map(t_data *data)
