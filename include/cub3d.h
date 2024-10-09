@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/08 13:58:08 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:02:32 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "../minilibx_opengl/minilibx_opengl_20191021/mlx.h"
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
+# include "../include/parser.h"
+# include "../include/game.h"
 # include <unistd.h>
 # include <sys/types.h>
 # include <stdio.h>
@@ -69,55 +71,9 @@
 # define DW 65364
 # define ESC_L 65307
 
-/* ERROR */
-# define ERR_ARG "Not valid arguments"
-# define ERR_NAME "The name is very short"
-# define ERR_EXT "The .cub extension is needed"
-# define ERR_FD "The file does not exist "
-# define ERR_READ "Do not have permission to read this file "
-# define ERR_OPEN "Error opening file "
-# define ERR_LMAP "Empty line in map is not allowed."
-# define ERR_EMPTY "Empty file"
-# define ERR_TEXT "Invalid value for textures and colors"
-# define ERR_COL "Floor or ceiling value's are not numbers"
-
-typedef struct s_data
-{
-	int		fd;
-	char	**file;
-	char	**map;
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	int		*f;
-	int		*c;
-}	t_data;
-
-
 /* UTILS.C */
 void	init_data(t_data *data);
 void	free_all(t_data *data);
 int		ft_error(char *error, t_data *data, char *file);
-
-/* PARSER.C */
-void	parser(int argc, char **argv, t_data *data);
-
-/* PARSER_FILE */
-void	check_arg(int argc, char **argv);
-void	check_file(char *argv, t_data *data);
-void	verify_blank_line(char *line);
-void	read_write_file(t_data *data);
-void	parser_file(int argc, char **argv, t_data *data);
-
-/* PARSER_TEXTURE */
-char	*save_texture(char *texture, t_data *data);
-int		*save_color(char *texture, t_data *data);
-void	parser_texture(t_data *data);
-
-
-/* PARSER_MAP */
-void	parser_map(t_data *data);
-void	copy_map(t_data *data);
 
 #endif

@@ -6,14 +6,14 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2024/10/08 13:24:15 by pcervill         ###   ########.fr        #
+#    Updated: 2024/10/09 11:11:18 by pcervill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 CC = gcc
 CFLAGS =	-Wall -Werror -Wextra -I ./include -I ./libft -I $(MLX_DIR) \
-			#-g -g3 -fsanitize=address
+			-g -g3 -fsanitize=address
 
 RM = rm -f
 

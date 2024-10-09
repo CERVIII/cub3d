@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:10:04 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/08 14:09:14 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:15:48 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	check_arg(int argc, char **argv)
 
 void	check_file(char *argv, t_data *data)
 {
-
 	if (access(argv, F_OK) == -1)
 		ft_error(ERR_FD, NULL, argv);
 	if (access(argv, R_OK) == -1)
@@ -40,15 +39,18 @@ void	verify_blank_line(char *line)
 	static unsigned int	count = 0;
 	static int			enter = 0;
 	static int			exit = 0;
+	char				*cpy;
 
-	if (count == 6 && ft_strlen(line) > 1 && !enter)
+	cpy = ft_strtrim(line, " \t");
+	if (count == 6 && ft_strlen(cpy) > 1 && !enter)
 		enter = 1;
-	if (count < 6 && ft_strlen(line) > 1)
+	if (count < 6 && ft_strlen(cpy) > 1)
 		count++;
-	if (enter && ft_strlen(ft_strtrim(line, " \t")) == 1 && !exit)
+	if (enter && ft_strlen(cpy) == 1 && !exit)
 		exit++;
-	if ((ft_strlen(line) > 1 || *line != '\n') && exit)
+	if ((ft_strlen(cpy) > 1 || *cpy != '\n') && exit)
 		ft_error(ERR_LMAP, NULL, NULL);
+	free(cpy);
 }
 
 void	read_write_file(t_data *data)
