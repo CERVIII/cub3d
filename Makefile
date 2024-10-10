@@ -6,7 +6,7 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2024/10/10 13:53:36 by pcervill         ###   ########.fr        #
+#    Updated: 2024/10/10 14:27:28 by pcervill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 # RULES
 all: $(OBJ_DIR) $(LIBFT_DIR) $(NAME)
+	@echo " \033[36m[ 🕹️  ] | READY TO PLAY!\033[0m"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
