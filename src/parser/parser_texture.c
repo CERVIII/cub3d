@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:42:23 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/10 13:49:57 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:21:13 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ char	*save_texture(char *texture, t_data *data)
 		ft_error(ERR_FD, data, result);
 	if (access(result, R_OK) == -1)
 		ft_error(ERR_READ, data, result);
-	fd = open(texture, O_RDONLY);
-	if (!get_next_line(fd))
+	fd = open(result, O_RDONLY);
+	aux = get_next_line(fd);
+	if (!aux)
 		ft_error(ERR_EMPTY, data, result);
+	free(aux);
 	return (result);
 }
 

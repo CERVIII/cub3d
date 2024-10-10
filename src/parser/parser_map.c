@@ -6,11 +6,30 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:10:21 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/10 13:42:49 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:30:29 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	copy_map(t_data *data, char **map)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			data->map[i + 1][j] = map[i][j];
+			j++;
+		}
+		i++;
+	}
+	return ;
+}
 
 void	init_map(t_data *data, char **map)
 {
@@ -30,25 +49,6 @@ void	init_map(t_data *data, char **map)
 		i++;
 	}
 	copy_map(data, map);
-	return ;
-}
-
-void	copy_map(t_data *data, char **map)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			data->map[i + 1][j] = map[i][j];
-			j++;
-		}
-		i++;
-	}
 	return ;
 }
 
@@ -93,8 +93,8 @@ void	check_map(char **map, t_data *data)
 
 void	check_wall(char **map, t_data *data)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (map[y])

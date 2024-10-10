@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:33 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/10 13:50:15 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:31:54 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ void	parser_texture(t_data *data);
 
 
 /* PARSER_MAP */
-void	init_map(t_data *data, char **map);
 void	copy_map(t_data *data, char **map);
+void	init_map(t_data *data, char **map);
 void	check_map(char **map, t_data *data);
+void	check_wall(char **map, t_data *data);
 void	parser_map(t_data *data);
 
 #endif
