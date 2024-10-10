@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:42:23 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/09 15:02:41 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/10 13:49:57 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*save_texture(char *texture, t_data *data)
 	char	*result;
 	char	*aux;
 	int		i;
+	int		fd;
 
 	cpyline = ft_split(texture, ' ');
 	aux = ft_strtrim(cpyline[1], " \t\n\r");
@@ -31,6 +32,9 @@ char	*save_texture(char *texture, t_data *data)
 		ft_error(ERR_FD, data, result);
 	if (access(result, R_OK) == -1)
 		ft_error(ERR_READ, data, result);
+	fd = open(texture, O_RDONLY);
+	if (!get_next_line(fd))
+		ft_error(ERR_EMPTY, data, result);
 	return (result);
 }
 

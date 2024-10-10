@@ -1,0 +1,6 @@
+*.o
+*.a
+mini*/*
+.vscode/*
+.DS_*
+cub3D
