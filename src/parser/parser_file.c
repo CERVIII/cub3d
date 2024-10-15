@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:10:04 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/09 11:15:48 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/15 12:21:25 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	verify_blank_line(char *line)
 	static int			exit = 0;
 	char				*cpy;
 
-	cpy = ft_strtrim(line, " \t");
+	cpy = ft_strtrim(line, "\t");
 	if (count == 6 && ft_strlen(cpy) > 1 && !enter)
 		enter = 1;
 	if (count < 6 && ft_strlen(cpy) > 1)

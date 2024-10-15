@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/09 15:07:59 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/15 12:24:28 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_game
 	int		width;
 	char	**map;
 	int		pos_player_x;
+	int		pos_player_y;
 }	t_game;
 
 #endif

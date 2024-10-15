@@ -1,7 +1,7 @@
-NO textures/wood.xpm
-SO textures/redbrick.xpm
-WE textures/greystone.xpm
-EA textures/colorstone.xpm
+NO ./textures/redbrick.xpm
+SO ./textures/bluestone.xpm
+WE ./textures/wood.xpm
+EA ./textures/mossy.xpm
 
 C 100,150,50
 F 0,50,180
@@ -29,10 +29,3 @@ F 0,50,180
  
  
 1           1   1   
-
-
-
-
-
-
-
