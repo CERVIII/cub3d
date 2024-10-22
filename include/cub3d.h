@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/21 21:40:44 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:39:15 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
 # endif
-
-# define WALL_SIZE 64
 
 /* # define PJ "./Sprites/Pacman_HD.xpm"
 # define PJL "./Sprites/pac_semi_left.xpm"

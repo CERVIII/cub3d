@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:10:21 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/22 12:38:05 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:07:00 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	copy_map(t_data *data, char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			data->map[i + 1][j] = map[i][j];
+			data->map[i + 1][j + 1] = map[i][j];
 			j++;
 		}
 		i++;
