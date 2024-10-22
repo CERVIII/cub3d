@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:32:09 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/21 21:38:35 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/22 12:16:49 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ void	print_texture(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_game	game;
 
-	init_data(&data);
-	parser(argc, argv, &data);
-//	print_array(data.file);
-//	print_texture(&data);
-//	print_array(data.map);
-	ft_game(&data);
-	free_all(&data);
+	init_data(&game.data);
+	parser(argc, argv, &game.data);
+//	print_array(game.data.file);
+//	print_texture(&game.data);
+//	print_array(game.data.map);
+	ft_game(&game);
+	free_all(&game.data);
 	return (0);
 }

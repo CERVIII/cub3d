@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/21 23:20:11 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/22 12:59:11 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "../minilibx-linux/mlx.h"
 
 # define SCREEN_X 800
-# define SCREEN_Y 600
+# define SCREEN_Y 800
 # define NAME "CUB3D"
 
 typedef struct s_player
@@ -66,11 +66,12 @@ typedef struct s_game
 	t_mlx		mlx;
 	t_player	player;
 	t_img		image;
+	t_data		data;
 }	t_game;
 
 /* GAME.C */
 void	init_mlx(t_game *game, t_mlx *mlx);
-void	init_game(t_game *game, t_data *data);
-void	ft_game(t_data *data);
+void	init_game(t_game *game);
+void	ft_game(t_game *game);
 
 #endif
