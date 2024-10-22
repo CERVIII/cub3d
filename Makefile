@@ -6,7 +6,7 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2024/10/10 14:27:28 by pcervill         ###   ########.fr        #
+#    Updated: 2024/10/21 21:41:12 by pcervill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,15 @@ RM = rm -f
 
 SRC_SRC =	main.c utils.c
 PRS_SRC =	parser.c parser_file.c parser_texture.c parser_map.c
-GME_SRC =	
+GME_SRC =	game.c
 
 ifeq ($(UNAME),Darwin)
 	MLX_DIR = ./minilibx_opengl/minilibx_opengl_20191021/
-	MFLAGS:= -L $(MLX_DIR) $(MLX_DIR)libmlx.a -lmlx -framework OpenGL -framework AppKit
+	MFLAGS = -L $(MLX_DIR) $(MLX_DIR)libmlx.a -lmlx -framework OpenGL -framework AppKit
 else
 	MLX_DIR =	./minilibx-linux
 	MLX_PATH =	${MLX_DIR}/libmlx.a
-	#MFLAGS =	-L $(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd
+	MFLAGS =	-L $(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd
 endif
 
 SRC = $(SRC_SRC) $(PRS_SRC) $(GME_SRC)
