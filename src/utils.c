@@ -6,11 +6,41 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:46:16 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/09 15:32:17 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/23 15:39:47 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+
+/* void ft_draw_line(t_data *data, int x1, int y1, int x2, int y2, int color)
+{
+	int	step;
+	int	x;
+	int	y;
+	int	i;
+	int	delta_x;
+	int	delta_y;
+
+	delta_x = x2 - x1;
+	delta_y = y2 - y1;
+	if (abs(delta_x) >= abs(delta_y))
+		step = abs(delta_x);
+	else
+		step = abs(delta_y);
+	delta_x = delta_x / step;
+	delta_y = delta_y / step;
+	x = x1;
+	y = x2;
+	i = 0;
+	while (i < step)
+	{
+		ft_put_pixel(data, x, y, color);
+		x += delta_x;
+		y += delta_y;
+		i++;
+	}
+} */
 
 int	get_heigh(char **map)
 {

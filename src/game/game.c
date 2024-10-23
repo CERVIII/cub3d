@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/23 14:16:10 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/23 15:44:06 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	get_direction(t_game *game, char c)
 		game->player.dir_y = 0;
 	}
 	game->player.plane_x = game->player.dir_x * 0.66;
-	game->player.plane_y = game->player.dir_x * 0.66;
+	game->player.plane_y = game->player.dir_y * 0.66;
 }
 
 void	init_key(t_keys *key)
@@ -80,36 +80,36 @@ void	init_game(t_game *game)
 
 int	pulse_key(int key, t_game *game)
 {
-	if (key == K_ESC)
+	if (key == ESC || key == ESC_L)
 		end_program(game);
-	if (key == A)
+	if (key == A || key == A_L)
 		game->keys.a = 1;
-	if (key == W)
+	if (key == W || key == W_L)
 		game->keys.w = 1;
-	if (key == S)
+	if (key == S || key == S_L)
 		game->keys.s = 1;
-	if (key == D)
+	if (key == D || key == D_L)
 		game->keys.d = 1;
-	if (key == LEFT)
+	if (key == LEFT || key == L)
 		game->keys.left = 1;
-	if (key == RIGHT)
+	if (key == RIGHT || key == R)
 		game->keys.right = 1;
 	return (0);
 }
 
 int	release_key(int key, t_game *game)
 {
-	if (key == A)
+	if (key == A || key == A_L)
 		game->keys.a = 0;
-	if (key == W)
+	if (key == W || key == W_L)
 		game->keys.w = 0;
-	if (key == S)
+	if (key == S || key == S_L)
 		game->keys.s = 0;
-	if (key == D)
+	if (key == D || key == D_L)
 		game->keys.d = 0;
-	if (key == LEFT)
+	if (key == LEFT || key == L)
 		game->keys.left = 0;
-	if (key == RIGHT)
+	if (key == RIGHT || key == R)
 		game->keys.right = 0;
 	return (0);
 }
@@ -118,13 +118,15 @@ int	handle_loop(t_game *game)
 {
 	print_map2d(game);
 	handle_movements(game);
+	return (0);
 }
 
 void	init_mlx(t_game *game, t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
 //	mlx->mlx_win = mlx_new_window(mlx->mlx, SCREEN_X, SCREEN_Y, NAME);
-	mlx->mlx_win = mlx_new_window(mlx->mlx, (game->width * 30), (game->heigh * 30), NAME);
+	mlx->mlx_win = mlx_new_window(mlx->mlx, (game->width * 30),
+			(game->heigh * 30), NAME);
 	game->image.img = mlx_new_image(game->mlx.mlx, SCREEN_X, SCREEN_Y);
 	game->image.data = (int *)mlx_get_data_addr(game->image.img, \
 				&game->image.bpp, &game->image.len, &game->image.endian);

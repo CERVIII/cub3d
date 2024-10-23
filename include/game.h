@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/23 14:17:01 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/23 15:39:26 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,34 +35,21 @@
 # define D 2
 # define W 13
 # define LEFT 123
-# define DOWN 125
 # define RIGHT 124
+# define DOWN 125
 # define UP 126
 # define ESC 53
 
 /* LINUX */
 # define A_L 97
-# define W_L 119
 # define D_L 100
 # define S_L 115
+# define W_L 119
 # define L 65361
 # define U 65362
 # define R 65363
 # define DW 65364
 # define ESC_L 65307
-/* 		 */
-
-# define W 119
-# define A 97
-# define S 115
-# define D 100
-
-# define UP 65362
-# define DOWN 65364
-# define RIGHT 65363
-# define LEFT 65361
-
-# define K_ESC 65307
 # define DESTROY 17
 
 typedef struct s_keys
@@ -124,20 +111,20 @@ typedef struct s_game
 }	t_game;
 
 /* EVENTS.C */
-int	end_program(void *l);
-static void	horizontal_movs(t_game *game);
-static void	lateral_movs(t_game *game);
-static void	rotation_movs(t_game *game);
-int	handle_movements(t_game *game);
+int				end_program(void *l);
+//static void		horizontal_movs(t_game *game);
+//static void	lateral_movs(t_game *game);
+//static void	rotation_movs(t_game *game);
+int				handle_movements(t_game *game);
 
 /* MAP2D.C */
-void	print_cube(int x, int y, t_game *game, int color);
-void	print_player(int x, int y, t_game *game);
-void	print_map2d(t_game *game);
+void			print_cube(int x, int y, t_game *game, int color);
+void			print_player(int x, int y, t_game *game);
+void			print_map2d(t_game *game);
 
 /* GAME.C */
-void	init_mlx(t_game *game, t_mlx *mlx);
-void	init_game(t_game *game);
-void	ft_game(t_game *game);
+void			init_mlx(t_game *game, t_mlx *mlx);
+void			init_game(t_game *game);
+void			ft_game(t_game *game);
 
 #endif
