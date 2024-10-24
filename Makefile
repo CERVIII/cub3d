@@ -6,7 +6,7 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2024/10/23 12:58:44 by pcervill         ###   ########.fr        #
+#    Updated: 2024/10/24 11:41:26 by pcervill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ endif
 
 SRC = $(SRC_SRC) $(PRS_SRC) $(GME_SRC)
 
-INCLUDES = ./include/cub3d.h ./libft/libft.h
+INCLUDES = ./include/cub3d.h ./include/parser.h ./include/game.h ./libft/libft.h
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
 

@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/22 15:39:15 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/24 11:41:39 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include "../minilibx_opengl/minilibx_opengl_20191021/mlx.h"
 # include "../minilibx-linux/mlx.h"
-# include "../libft/libft.h"
-# include "../include/parser.h"
-# include "../include/game.h"
+# include "libft.h"
+# include "parser.h"
+# include "game.h"
 # include <unistd.h>
 # include <sys/types.h>
 # include <stdio.h>
@@ -49,28 +49,6 @@
 # define MAGENT  "\x1B[35m"
 # define CYAN  "\x1B[36m"
 # define WHITE  "\x1B[37m"
-
-/* MAC */
-# define A 0
-# define S 1
-# define D 2
-# define W 13
-# define LEFT 123
-# define DOWN 125
-# define RIGHT 124
-# define UP 126
-# define ESC 53
-
-/* LINUX */
-# define A_L 97
-# define W_L 119
-# define D_L 100
-# define S_L 115
-# define L 65361
-# define U 65362
-# define R 65363
-# define DW 65364
-# define ESC_L 65307
 
 /* UTILS.C */
 int		get_heigh(char **map);

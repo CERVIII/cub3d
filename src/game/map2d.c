@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:56:11 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/22 15:01:14 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/24 15:27:50 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@ void	print_cube(int x, int y, t_game *game, int color)
 {
 	int	i;
 	int	j;
-	int	size;
 
-	size = 30;
-	i = y * size;
-	while (i < ((y + 1) * size - 1))
+	i = y;
+	while (i < (y + WALL_SIZE - 1))
 	{
-		j = x * size;
+		j = x;
 		mlx_pixel_put(game->mlx.mlx, game->mlx.mlx_win, j++, i, 0xFF0000);
-		while (j < ((x + 1) * size) - 1)
+		while (j < (x + WALL_SIZE - 1))
 		{
-			if (i == (y * size))
+			if (i == y)
 				mlx_pixel_put(game->mlx.mlx, game->mlx.mlx_win, j, i, 0xFF0000);
 			else
 				mlx_pixel_put(game->mlx.mlx, game->mlx.mlx_win, j, i, color);
@@ -42,15 +40,12 @@ void	print_player(int x, int y, t_game *game)
 {
 	int	i;
 	int	j;
-	int	size;
 
-	size = 10;
-	print_cube(x, y, game, 0x000000);
-	i = (y * 30) + size;
-	while (i < (((y + 1) * 30) - size))
+	i = y - WALL_SIZE / 4;
+	while (i < (y + WALL_SIZE / 4))
 	{
-		j = (x * 30) + size;
-		while (j < (((x + 1) * 30) - size))
+		j = x - (WALL_SIZE / 4);
+		while (j < (x + WALL_SIZE / 4))
 		{
 			mlx_pixel_put(game->mlx.mlx, game->mlx.mlx_win, j, i, 0x00FF00);
 			j++;
@@ -71,13 +66,14 @@ void	print_map2d(t_game *game)
 		while (game->map[y][x])
 		{
 			if (game->map[y][x] == '1')
-				print_cube(x, y, game, 0x0000FF);
+				print_cube(x * WALL_SIZE, y * WALL_SIZE, game, 0x0000FF);
 			else if (game->map[y][x] == '0')
-				print_cube(x, y, game, 0x000000);
+				print_cube(x * WALL_SIZE, y * WALL_SIZE, game, 0x000000);
 			else if (ft_strchr("NSEW", game->map[y][x]))
-				print_player(x, y, game);
+				print_cube(x * WALL_SIZE, y * WALL_SIZE, game, 0x000000);
 			x++;
 		}
 		y++;
 	}
+	print_player(game->data.player_xpx, game->data.player_ypx, game);
 }

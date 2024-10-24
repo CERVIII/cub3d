@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:10:21 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/22 15:07:00 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:58:00 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int	check_player(char **map, int x, int y, t_data *data)
 	if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'S'
 		|| map[y][x] == 'E' || map[y][x] == 'W')
 	{
-		data->player_x = (x * WALL_SIZE) + (WALL_SIZE / 2);
-		data->player_y = (y * WALL_SIZE) + (WALL_SIZE / 2);
+		data->player_xpx = (x * WALL_SIZE) + (WALL_SIZE / 2);
+		data->player_x = x;
+		data->player_ypx = (y * WALL_SIZE) + (WALL_SIZE / 2);
+		data->player_y = y;
 		return (1);
 	}
 	return (0);

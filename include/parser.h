@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:33 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/10 15:31:54 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/24 15:00:09 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ typedef struct s_data
 	int		*c;
 	int		heigh;
 	int		width;
-	int		player_x;
-	int		player_y;
+	double	player_xpx;
+	double	player_x;
+	double	player_ypx;
+	double	player_y;
 }	t_data;
 
 /* PARSER.C */

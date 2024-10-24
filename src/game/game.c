@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/23 15:44:06 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/24 15:52:50 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	init_game(t_game *game)
 	game->map = game->data.map;
 	game->heigh = game->data.heigh - 1;
 	game->width = game->data.width - 1;
-	game->player.move_speed = 0.01;
+	game->player.move_speed = 0.0001;
 	game->player.rot_speed = 0.05;
 	y = 0;
 	while (game->map[y])
@@ -116,7 +116,7 @@ int	release_key(int key, t_game *game)
 
 int	handle_loop(t_game *game)
 {
-	print_map2d(game);
+	print_player(game->data.player_xpx, game->data.player_ypx, game);
 	handle_movements(game);
 	return (0);
 }
@@ -125,11 +125,12 @@ void	init_mlx(t_game *game, t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
 //	mlx->mlx_win = mlx_new_window(mlx->mlx, SCREEN_X, SCREEN_Y, NAME);
-	mlx->mlx_win = mlx_new_window(mlx->mlx, (game->width * 30),
-			(game->heigh * 30), NAME);
+	mlx->mlx_win = mlx_new_window(mlx->mlx, (game->width * WALL_SIZE),
+			(game->heigh * WALL_SIZE), NAME);
 	game->image.img = mlx_new_image(game->mlx.mlx, SCREEN_X, SCREEN_Y);
 	game->image.data = (int *)mlx_get_data_addr(game->image.img, \
 				&game->image.bpp, &game->image.len, &game->image.endian);
+	print_map2d(game);
 	mlx_loop_hook(game->mlx.mlx, &handle_loop, game);
 	mlx_hook(game->mlx.mlx_win, DESTROY, 0, &end_program, game);
 	mlx_hook(game->mlx.mlx_win, KEY_PRESS, (1L << 0), &pulse_key, game);
