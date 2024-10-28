@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:56:11 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/24 15:27:50 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:45:03 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,14 @@ void	print_cube(int x, int y, t_game *game, int color)
 	}
 }
 
-void	print_player(int x, int y, t_game *game)
+void	print_player(int x, int y, t_mlx *mlx)
 {
-	int	i;
+
+	mlx->img = mlx_xpm_file_to_image(mlx->mlx, PL, &mlx->w, &mlx->h);
+	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img, x - (WALL_SIZE / 2), y - (WALL_SIZE / 2));
+	mlx_destroy_image(mlx->mlx, mlx->img);
+	
+/* 	int	i;
 	int	j;
 
 	i = y - WALL_SIZE / 4;
@@ -51,10 +56,10 @@ void	print_player(int x, int y, t_game *game)
 			j++;
 		}
 		i++;
-	}
+	} */
 }
 
-void	print_map2d(t_game *game)
+void	print_map2d(t_game *game, t_mlx *mlx)
 {
 	int	x;
 	int	y;
@@ -66,14 +71,22 @@ void	print_map2d(t_game *game)
 		while (game->map[y][x])
 		{
 			if (game->map[y][x] == '1')
-				print_cube(x * WALL_SIZE, y * WALL_SIZE, game, 0x0000FF);
-			else if (game->map[y][x] == '0')
-				print_cube(x * WALL_SIZE, y * WALL_SIZE, game, 0x000000);
-			else if (ft_strchr("NSEW", game->map[y][x]))
-				print_cube(x * WALL_SIZE, y * WALL_SIZE, game, 0x000000);
+			{
+				mlx->img = mlx_xpm_file_to_image(mlx->mlx, WL, &mlx->w, &mlx->h);
+				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img, x * WALL_SIZE, y * WALL_SIZE);
+				mlx_destroy_image(mlx->mlx, mlx->img);
+//				print_cube(x * WALL_SIZE, y * WALL_SIZE, game, 0x0000FF);
+			}
+			else if (ft_strchr("NSEW0", game->map[y][x]))
+			{
+				mlx->img = mlx_xpm_file_to_image(mlx->mlx, FL, &mlx->w, &mlx->h);
+				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img, x * WALL_SIZE, y * WALL_SIZE);
+				mlx_destroy_image(mlx->mlx, mlx->img);
+//				print_cube(x * WALL_SIZE, y * WALL_SIZE, game, 0x000000);
+			}
 			x++;
 		}
 		y++;
 	}
-	print_player(game->data.player_xpx, game->data.player_ypx, game);
+	print_player(game->data.player_xpx, game->data.player_ypx, mlx);
 }

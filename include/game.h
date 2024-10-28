@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/24 14:55:16 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:42:34 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@
 # include "../minilibx_opengl/minilibx_opengl_20191021/mlx.h"
 # include "../minilibx-linux/mlx.h"
 
-# define WALL_SIZE 64
+# define FL "./sprites/floor.xpm"
+# define WL "./sprites/wall.xpm"
+# define PL "./sprites/icon.xpm"
+
+# define WALL_SIZE 40
 # define SCREEN_X 800
 # define SCREEN_Y 800
 # define NAME "CUB3D"
@@ -82,6 +86,8 @@ typedef struct s_mlx
 	void		*img;
 	int			**tex_buf;
 	int			**texture;
+	int			h;
+	int			w;
 	int			fd;
 }	t_mlx;
 
@@ -119,8 +125,8 @@ int				handle_movements(t_game *game);
 
 /* MAP2D.C */
 void			print_cube(int x, int y, t_game *game, int color);
-void			print_player(int x, int y, t_game *game);
-void			print_map2d(t_game *game);
+void			print_player(int x, int y, t_mlx *mlx);
+void			print_map2d(t_game *game, t_mlx *mlx);
 
 /* GAME.C */
 void			init_mlx(t_game *game, t_mlx *mlx);

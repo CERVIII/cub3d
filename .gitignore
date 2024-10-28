@@ -4,3 +4,4 @@ mini*/*
 .vscode/*
 .DS_*
 cub3D
+*.out

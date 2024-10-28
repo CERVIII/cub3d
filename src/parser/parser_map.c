@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:10:21 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/24 14:58:00 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/28 21:47:02 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ int	check_player(char **map, int x, int y, t_data *data)
 		|| map[y][x] == 'E' || map[y][x] == 'W')
 	{
 		data->player_xpx = (x * WALL_SIZE) + (WALL_SIZE / 2);
-		data->player_x = x;
+		data->player_x = x + 0.5;
 		data->player_ypx = (y * WALL_SIZE) + (WALL_SIZE / 2);
-		data->player_y = y;
+		data->player_y = y + 0.5;
 		return (1);
 	}
 	return (0);
