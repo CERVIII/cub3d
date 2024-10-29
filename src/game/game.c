@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/28 21:26:58 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/29 13:26:12 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	get_direction(t_game *game, char c)
 		game->player.dir_x = 0;
 		game->player.dir_y = 1;
 	}
-	else if (c == 'w')
+	else if (c == 'W')
 	{
 		game->player.dir_x = -1;
 		game->player.dir_y = 0;
@@ -117,7 +117,7 @@ int	release_key(int key, t_game *game)
 int	handle_loop(t_game *game)
 {
 	print_map2d(game, &game->mlx);
-//	print_player(game->data.player_xpx, game->data.player_ypx, &game->mlx);
+	print_player(game->data.player_xpx, game->data.player_ypx, &game->mlx);
 	handle_movements(game);
 	return (0);
 }
@@ -128,14 +128,15 @@ void	init_mlx(t_game *game, t_mlx *mlx)
 //	mlx->mlx_win = mlx_new_window(mlx->mlx, SCREEN_X, SCREEN_Y, NAME);
 	mlx->mlx_win = mlx_new_window(mlx->mlx, (game->width * WALL_SIZE),
 			(game->heigh * WALL_SIZE), NAME);
-/* 	game->image.img = mlx_new_image(game->mlx.mlx, SCREEN_X, SCREEN_Y);
+	game->image.img = mlx_new_image(game->mlx.mlx, SCREEN_X, SCREEN_Y);
 	game->image.data = (int *)mlx_get_data_addr(game->image.img, \
-				&game->image.bpp, &game->image.len, &game->image.endian); */
+				&game->image.bpp, &game->image.len, &game->image.endian);
+//	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win, game->image.img, 0, 0);
 	print_map2d(game, mlx);
-	mlx_loop_hook(game->mlx.mlx, &handle_loop, game);
 	mlx_hook(game->mlx.mlx_win, DESTROY, 0, &end_program, game);
 	mlx_hook(game->mlx.mlx_win, KEY_PRESS, (1L << 0), &pulse_key, game);
 	mlx_hook(game->mlx.mlx_win, KEY_OFF, (1L << 1), &release_key, game);
+	mlx_loop_hook(game->mlx.mlx, &handle_loop, game);
 	mlx_loop(mlx->mlx);
 }
 

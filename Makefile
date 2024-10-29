@@ -6,7 +6,7 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2024/10/28 14:08:13 by pcervill         ###   ########.fr        #
+#    Updated: 2024/10/29 11:38:54 by pcervill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ $(NAME): $(OBJ)
 	@make -C $(LIBFT_DIR) --silent
 	@echo " \033[32m[ OK ] | ✅ Libft ready! ✅\033[0m"
 	@echo " \033[33m[ .. ] | Compiling $(NAME)... \033[0m"
-	@$(CC) $(CFLAGS) $(DEBUG) $(OBJ) $(LIBFT) -o $(NAME) $(MFLAGS)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(MFLAGS)
 	@echo " \033[32m[ OK ] | ✅ $(NAME) ready! ✅\033[0m"
 
 # all .o files removed

@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/28 20:42:34 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/29 09:18:57 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 
 # define FL "./sprites/floor.xpm"
 # define WL "./sprites/wall.xpm"
-# define PL "./sprites/icon.xpm"
+//# define PL "./sprites/pl_circle.xpm"
+# define PL "./sprites/2d_player.xpm"
 
 # define WALL_SIZE 40
 # define SCREEN_X 800
