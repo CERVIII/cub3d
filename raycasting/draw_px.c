@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 14:06:07 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/29 14:57:49 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:23:19 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	draw_square(int x, int y, int size, t_game *game)
 		put_pixel(x + i, y + size, game->color, game);
 		i++;
 	}
-
 }
 
 void	draw_map(t_game *game)
