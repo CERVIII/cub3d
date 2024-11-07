@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:45:15 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/29 13:19:43 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:19:51 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,109 +18,38 @@ int	end_program(void *l)
 	exit(0);
 }
 
-static void	lateral_movs(t_game *game)
+int	pulse_key(int key, t_game *game)
 {
-	char	**map;
-	double	speed;
-
-	speed = game->player.move_speed;
-	map = game->map;
-	if (game->keys.a)
-	{
-		if (ft_strchr("NSEW0", map[(int)(game->data.player_y + \
-			game->player.dir_x * (speed))][(int)(game->data.player_x)]))
-		{
-			game->data.player_y += game->player.dir_x * speed;
-			game->data.player_ypx += game->player.dir_x * 1;
-		}
-		if (ft_strchr("NSEW0", map[(int)(game->data.player_y)] \
-			[(int)(game->data.player_x + game->player.dir_y * \
-				(speed))]))
-		{
-			game->data.player_x += game->player.dir_y * speed;
-			game->data.player_xpx += game->player.dir_y * 1;
-		}
-	}
-	if (game->keys.d)
-	{
-		if (ft_strchr("NSEW0", map[(int)(game->data.player_y - \
-			game->player.dir_x * (speed))][(int)(game->data.player_x)]))
-		{
-			game->data.player_y -= game->player.dir_x * speed;
-			game->data.player_ypx -= game->player.dir_x * 1;
-		}
-		if (ft_strchr("NSEW0", map[(int)(game->data.player_y)] \
-		[(int)(game->data.player_x - game->player.dir_y * (speed))]))
-		{
-			game->data.player_x -= game->player.dir_y * speed;
-			game->data.player_xpx -= game->player.dir_y * 1;
-		}
-	}
-	printf("ACTUAL\n");
-	printf("pl_y: %f pl_x: %f\n", game->data.player_ypx, game->data.player_xpx);
-	printf("pl_y: %f pl_x: %f\n", game->data.player_y, game->data.player_x);
+	if (key == ESC || key == ESC_L)
+		end_program(game);
+	if (key == A || key == A_L)
+		game->keys.a = 1;
+	if (key == W || key == W_L)
+		game->keys.w = 1;
+	if (key == S || key == S_L)
+		game->keys.s = 1;
+	if (key == D || key == D_L)
+		game->keys.d = 1;
+	if (key == LEFT || key == L)
+		game->keys.left = 1;
+	if (key == RIGHT || key == R)
+		game->keys.right = 1;
+	return (0);
 }
 
-static void	horizontal_movs(t_game *game)
+int	release_key(int key, t_game *game)
 {
-	char	**map;
-	double	speed;
-
-	speed = game->player.move_speed;
-	map = game->map;
-	if (game->keys.w)
-	{
-		if (ft_strchr("NSEW0", map[(int)(game->data.player_y + \
-			game->player.dir_y * (speed))][(int)(game->data.player_x)]))
-		{
-			game->data.player_y += game->player.dir_y * speed;
-			game->data.player_ypx += game->player.dir_y * 1;
-		}
-		if (ft_strchr("NSEW0", map[(int)(game->data.player_y)] \
-			[(int)(game->data.player_x + game->player.dir_x * \
-				(speed))]))
-		{
-			game->data.player_x += game->player.dir_x * speed;
-			game->data.player_xpx += game->player.dir_x * 1;
-		}
-	}
-	if (game->keys.s)
-	{
-		if (ft_strchr("NSEW0", map[(int)(game->data.player_y - \
-		game->player.dir_y * (speed))][(int)(game->data.player_x)]))
-		{
-			game->data.player_y -= game->player.dir_y * speed;
-			game->data.player_ypx -= game->player.dir_y * 1;
-		}
-		if (ft_strchr("NSEW0", map[(int)(game->data.player_y)] \
-		[(int)(game->data.player_x - game->player.dir_x * (speed))]))
-		{
-			game->data.player_x -= game->player.dir_x * speed;
-			game->data.player_xpx -= game->player.dir_x * 1;
-		}
-	}
-	printf("DESPUES\n");
-	printf("pl_y: %f pl_x: %f\n", game->data.player_ypx, game->data.player_xpx);
-	printf("pl_y: %f pl_x: %f\n", game->data.player_y, game->data.player_x);
-}
-
-/* static void	rotation_player(t_game *game)
-{
-	int	rot_speed;
-
-	rot_speed = 0;
-	if (game->keys.left)
-		rot_speed -= game->player.rot_speed;
-	else if (game->keys.right)
-		rot_speed -= game->player.rot_speed;
-	else
-		return ;
-} */
-
-int	handle_movements(t_game *game)
-{
-	horizontal_movs(game);
-	lateral_movs(game);
-//	rotation_player(game);
-return (0);
+	if (key == A || key == A_L)
+		game->keys.a = 0;
+	if (key == W || key == W_L)
+		game->keys.w = 0;
+	if (key == S || key == S_L)
+		game->keys.s = 0;
+	if (key == D || key == D_L)
+		game->keys.d = 0;
+	if (key == LEFT || key == L)
+		game->keys.left = 0;
+	if (key == RIGHT || key == R)
+		game->keys.right = 0;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/29 09:18:57 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:18:15 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_mlx
 typedef struct s_img
 {
 	void	*img;
-	int		*data;
+	char		*data;
 	char	*path;
 	int		width;
 	int		height;
@@ -108,6 +108,7 @@ typedef struct s_game
 {
 	int			heigh;
 	int			width;
+	int			color;
 	char		**map;
 	char		**texture;
 	t_keys		keys;
@@ -118,20 +119,26 @@ typedef struct s_game
 }	t_game;
 
 /* EVENTS.C */
-int				end_program(void *l);
-//static void		horizontal_movs(t_game *game);
+int			end_program(void *l);
+int			pulse_key(int key, t_game *game);
+int			release_key(int key, t_game *game);
+
+/* PLAYER.C */
+//static void	horizontal_movs(t_game *game);
 //static void	lateral_movs(t_game *game);
 //static void	rotation_movs(t_game *game);
-int				handle_movements(t_game *game);
+int			handle_movements(t_game *game);
 
 /* MAP2D.C */
-void			print_cube(int x, int y, t_game *game, int color);
-void			print_player(int x, int y, t_mlx *mlx);
-void			print_map2d(t_game *game, t_mlx *mlx);
+void		clear_image(t_img *image);
+void		put_pixel(int x, int y, int color, t_img *image);
+void		print_cube(int x, int y, int size, t_game *game);
+void		print_player(int x, int y, t_game *game);
+void		print_map2d(t_game *game);
 
 /* GAME.C */
-void			init_mlx(t_game *game, t_mlx *mlx);
-void			init_game(t_game *game);
-void			ft_game(t_game *game);
+void		init_mlx(t_game *game, t_mlx *mlx, t_img *img);
+void		init_game(t_game *game);
+void		ft_game(t_game *game);
 
 #endif

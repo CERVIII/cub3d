@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 11:18:27 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/30 15:49:38 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/05 12:26:32 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int		end_program(void *l);
 void	init_player(t_player *player);
 int		key_press(int keycode, t_player *player);
 int		key_release(int keycode, t_player *player);
-void	move_player(t_player *player, t_game *game);
+void	move_player(t_player *player);
 
 /* DRAW_PX.C */
 void	clear_image(t_game *game);

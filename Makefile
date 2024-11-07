@@ -6,7 +6,7 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2024/10/29 11:38:54 by pcervill         ###   ########.fr        #
+#    Updated: 2024/11/07 14:20:56 by pcervill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ UNAME := $(shell uname)
 NAME = cub3D
 CC = gcc
 CFLAGS =	-Wall -Werror -Wextra -I ./include -I ./libft -I $(MLX_DIR) \
-			#-g -g3 -fsanitize=address
+			-g -g3 -fsanitize=address
 RM = rm -f
 
 SRC_SRC =	main.c utils.c

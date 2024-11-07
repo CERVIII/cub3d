@@ -6,64 +6,71 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:56:11 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/28 20:45:03 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:22:04 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void	print_cube(int x, int y, t_game *game, int color)
-{
-	int	i;
-	int	j;
-
-	i = y;
-	while (i < (y + WALL_SIZE - 1))
-	{
-		j = x;
-		mlx_pixel_put(game->mlx.mlx, game->mlx.mlx_win, j++, i, 0xFF0000);
-		while (j < (x + WALL_SIZE - 1))
-		{
-			if (i == y)
-				mlx_pixel_put(game->mlx.mlx, game->mlx.mlx_win, j, i, 0xFF0000);
-			else
-				mlx_pixel_put(game->mlx.mlx, game->mlx.mlx_win, j, i, color);
-			mlx_pixel_put(game->mlx.mlx, game->mlx.mlx_win, j, i + 1, 0xFF0000);
-			j++;
-		}
-		mlx_pixel_put(game->mlx.mlx, game->mlx.mlx_win, j, i, 0xFF0000);
-		++i;
-	}
-}
-
-void	print_player(int x, int y, t_mlx *mlx)
-{
-
-	mlx->img = mlx_xpm_file_to_image(mlx->mlx, PL, &mlx->w, &mlx->h);
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img, x - (WALL_SIZE / 2), y - (WALL_SIZE / 2));
-	mlx_destroy_image(mlx->mlx, mlx->img);
-	
-/* 	int	i;
-	int	j;
-
-	i = y - WALL_SIZE / 4;
-	while (i < (y + WALL_SIZE / 4))
-	{
-		j = x - (WALL_SIZE / 4);
-		while (j < (x + WALL_SIZE / 4))
-		{
-			mlx_pixel_put(game->mlx.mlx, game->mlx.mlx_win, j, i, 0x00FF00);
-			j++;
-		}
-		i++;
-	} */
-}
-
-void	print_map2d(t_game *game, t_mlx *mlx)
+void	clear_image(t_img *image)
 {
 	int	x;
 	int	y;
 
+	y = 0;
+	while (y < SCREEN_Y)
+	{
+		x = 0;
+		while (x < SCREEN_X)
+		{
+			put_pixel(x, y, 0, image);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	put_pixel(int x, int y, int color, t_img *image)
+{
+	int	index;
+
+	if (x >= (12 * WALL_SIZE) || y >= (12 * WALL_SIZE) || x < 0 || y < 0)	// Cambiar por SCREEN_x/y
+		return ;
+//	printf("y: %d x: %d\n", (y * image->len + x), (x * image->bpp / 8));
+	index = y * image->len + x * image->bpp / 8;
+//	printf("%x\n", color);
+	image->data[index] = color & 0xFF;
+	image->data[index + 1] = (color >> 8) & 0xFF;
+	image->data[index + 2] = (color >> 16) & 0xFF;
+}
+
+void	print_cube(int x, int y, int size, t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		put_pixel(x + i, y, game->color, &game->image);
+		put_pixel(x, y + i, game->color, &game->image);
+		put_pixel(x + size, y + i, game->color, &game->image);
+		put_pixel(x + i, y + size, game->color, &game->image);
+		i++;
+	}
+}
+
+void	print_player(int x, int y, t_game *game)
+{
+	game->color = 0x00FF00;
+	print_cube(x * WALL_SIZE + (WALL_SIZE / 2), y * WALL_SIZE + (WALL_SIZE / 2), 10, game);
+}
+
+void	print_map2d(t_game *game)
+{
+	int	x;
+	int	y;
+
+	game->color = 0x00FFFF;
 	y = 0;
 	while (game->map[y])
 	{
@@ -71,22 +78,9 @@ void	print_map2d(t_game *game, t_mlx *mlx)
 		while (game->map[y][x])
 		{
 			if (game->map[y][x] == '1')
-			{
-				mlx->img = mlx_xpm_file_to_image(mlx->mlx, WL, &mlx->w, &mlx->h);
-				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img, x * WALL_SIZE, y * WALL_SIZE);
-				mlx_destroy_image(mlx->mlx, mlx->img);
-//				print_cube(x * WALL_SIZE, y * WALL_SIZE, game, 0x0000FF);
-			}
-			else if (ft_strchr("NSEW0", game->map[y][x]))
-			{
-				mlx->img = mlx_xpm_file_to_image(mlx->mlx, FL, &mlx->w, &mlx->h);
-				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img, x * WALL_SIZE, y * WALL_SIZE);
-				mlx_destroy_image(mlx->mlx, mlx->img);
-//				print_cube(x * WALL_SIZE, y * WALL_SIZE, game, 0x000000);
-			}
+				print_cube(x * WALL_SIZE, y * WALL_SIZE, WALL_SIZE, game);
 			x++;
 		}
 		y++;
 	}
-	print_player(game->data.player_xpx, game->data.player_ypx, mlx);
 }

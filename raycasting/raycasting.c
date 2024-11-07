@@ -6,13 +6,12 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 11:13:34 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/30 15:51:06 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:00:44 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-// distance calculation functions
 float	distance(float x, float y)
 {
 	return (sqrt(x * x + y * y));
@@ -56,21 +55,17 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	float	height;
 	int		start_y;
 	int		end;
-	bool	flag;
 
 	cos_angle = cos(start_x);
 	sin_angle = sin(start_x);
 	ray_x = player->x;
 	ray_y = player->y;
-	flag = touch(ray_x, ray_y, game);
-//	while (!touch(ray_x, ray_y, game))
-	while (flag == false)
+	while (!touch(ray_x, ray_y, game))
 	{
 		if (DEBUG)
 			put_pixel(ray_x, ray_y, 0xFF0000, game);
 		ray_x += cos_angle;
 		ray_y += sin_angle;
-		flag = touch(ray_x, ray_y, game);
 	}
 	if (!DEBUG)
 	{
@@ -94,7 +89,7 @@ int	draw_loop(t_game *game)
 	int			i;
 
 	player = &game->player;
-	move_player(player, game);
+	move_player(player);
 	clear_image(game);
 	if (DEBUG)
 	{
