@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/07 16:18:15 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:29:24 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_mlx
 typedef struct s_img
 {
 	void	*img;
-	char		*data;
+	char	*data;
 	char	*path;
 	int		width;
 	int		height;
@@ -130,6 +130,10 @@ int			release_key(int key, t_game *game);
 int			handle_movements(t_game *game);
 
 /* MAP2D.C */
+//void		draw_line(t_img *image, int x1, int y1, int x2, int y2);
+void		draw_line(t_img *image, t_data *data, int x, int y);
+int			touch(float px, float py, t_game *game);
+//void		draw_line(t_data *data, t_game *game, float start_x/* , int i */);
 void		clear_image(t_img *image);
 void		put_pixel(int x, int y, int color, t_img *image);
 void		print_cube(int x, int y, int size, t_game *game);

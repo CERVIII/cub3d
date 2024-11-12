@@ -6,10 +6,11 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/07 16:20:39 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:46:35 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d.h"
 #include "game.h"
 
 void	get_direction(t_game *game, char c)
@@ -80,16 +81,13 @@ void	init_game(t_game *game)
 
 int	handle_loop(t_game *game)
 {
+//	handle_movements(game);
 	clear_image(&game->image);
 	print_map2d(game);
-	print_player(game->data.player_x, game->data.player_y, game);
+	print_player(game->data.player_xpx, game->data.player_ypx, game);
+	draw_line(&game->image, &game->data, 100, 100);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win, \
 			game->image.img, 0, 0);
-
-//	print_map2d(game);
-//	print_player(game->data.player_xpx, game->data.player_ypx, game);
-//	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win, game->image.img, 0, 0);
-//	handle_movements(game);
 	return (0);
 }
 
@@ -105,7 +103,6 @@ void	init_mlx(t_game *game, t_mlx *mlx, t_img *image)
 
 	image->data = mlx_get_data_addr(image->img, \
 				&image->bpp, &image->len, &image->endian);
-
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, image->img, 0, 0);
 }
 

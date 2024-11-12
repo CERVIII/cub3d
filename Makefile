@@ -6,7 +6,7 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2024/11/07 14:20:56 by pcervill         ###   ########.fr        #
+#    Updated: 2024/11/12 12:17:16 by pcervill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RM = rm -f
 
 SRC_SRC =	main.c utils.c
 PRS_SRC =	parser.c parser_file.c parser_texture.c parser_map.c
-GME_SRC =	game.c map2d.c events.c
+GME_SRC =	game.c map2d.c events.c player.c
 
 ifeq ($(UNAME),Darwin)
 	MLX_DIR = ./minilibx_opengl/minilibx_opengl_20191021/

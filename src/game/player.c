@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:16:08 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/07 13:20:09 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:33:17 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ static void	lateral_movs(t_game *game)
 	if (game->keys.d)
 	{
 		if (ft_strchr("NSEW0", map[(int)(game->data.player_y - \
-			game->player.dir_x * (speed))][(int)(game->data.player_x)]))
+			game->player.dir_x * (speed * 10))][(int)(game->data.player_x)]))
 		{
 			game->data.player_y -= game->player.dir_x * speed;
 			game->data.player_ypx -= game->player.dir_x * 1;
 		}
 		if (ft_strchr("NSEW0", map[(int)(game->data.player_y)] \
-		[(int)(game->data.player_x - game->player.dir_y * (speed))]))
+		[(int)(game->data.player_x - game->player.dir_y * (speed * 10))]))
 		{
 			game->data.player_x -= game->player.dir_y * speed;
 			game->data.player_xpx -= game->player.dir_y * 1;
@@ -81,13 +81,13 @@ static void	horizontal_movs(t_game *game)
 	if (game->keys.s)
 	{
 		if (ft_strchr("NSEW0", map[(int)(game->data.player_y - \
-		game->player.dir_y * (speed))][(int)(game->data.player_x)]))
+		game->player.dir_y * (speed * 10))][(int)(game->data.player_x)]))
 		{
 			game->data.player_y -= game->player.dir_y * speed;
 			game->data.player_ypx -= game->player.dir_y * 1;
 		}
 		if (ft_strchr("NSEW0", map[(int)(game->data.player_y)] \
-		[(int)(game->data.player_x - game->player.dir_x * (speed))]))
+		[(int)(game->data.player_x - game->player.dir_x * (speed * 10))]))
 		{
 			game->data.player_x -= game->player.dir_x * speed;
 			game->data.player_xpx -= game->player.dir_x * 1;
@@ -115,6 +115,6 @@ int	handle_movements(t_game *game)
 {
 	horizontal_movs(game);
 	lateral_movs(game);
-	rotation_player(game);
+//	rotation_player(game);
 	return (0);
 }
