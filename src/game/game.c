@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/12 15:46:35 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:29:13 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	get_direction(t_game *game, char c)
 		game->player.dir_x = 1;
 		game->player.dir_y = 0;
 	}
-	game->player.plane_x = game->player.dir_x * 0.66;
-	game->player.plane_y = game->player.dir_y * 0.66;
+	game->player.plane_x = game->player.dir_y * 0.66;
+	game->player.plane_y = game->player.dir_x * 0.66;
 }
 
 void	init_key(t_keys *key)
@@ -81,11 +81,10 @@ void	init_game(t_game *game)
 
 int	handle_loop(t_game *game)
 {
-//	handle_movements(game);
 	clear_image(&game->image);
 	print_map2d(game);
 	print_player(game->data.player_xpx, game->data.player_ypx, game);
-	draw_line(&game->image, &game->data, 100, 100);
+	handle_movements(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win, \
 			game->image.img, 0, 0);
 	return (0);
@@ -94,13 +93,10 @@ int	handle_loop(t_game *game)
 void	init_mlx(t_game *game, t_mlx *mlx, t_img *image)
 {
 	mlx->mlx = mlx_init();
-
 	mlx->mlx_win = mlx_new_window(mlx->mlx, game->heigh * WALL_SIZE, \
 			game->width * WALL_SIZE, NAME);
-
 	image->img = mlx_new_image(mlx->mlx, game->heigh * WALL_SIZE, \
 			game->width * WALL_SIZE);
-
 	image->data = mlx_get_data_addr(image->img, \
 				&image->bpp, &image->len, &image->endian);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, image->img, 0, 0);
@@ -115,5 +111,4 @@ void	ft_game(t_game *game)
 	mlx_hook(game->mlx.mlx_win, KEY_OFF, (1L << 1), &release_key, game);
 	mlx_loop_hook(game->mlx.mlx, &handle_loop, game);
 	mlx_loop(game->mlx.mlx);
-
 }

@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/12 15:29:24 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/13 12:49:02 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@
 //# define PL "./sprites/pl_circle.xpm"
 # define PL "./sprites/2d_player.xpm"
 
+# define NAME "CUB3D"
 # define WALL_SIZE 40
 # define SCREEN_X 800
 # define SCREEN_Y 800
-# define NAME "CUB3D"
+# define PI 3.14159265359
 
 # define KEY_PRESS 2
 # define KEY_OFF 3
@@ -124,16 +125,11 @@ int			pulse_key(int key, t_game *game);
 int			release_key(int key, t_game *game);
 
 /* PLAYER.C */
-//static void	horizontal_movs(t_game *game);
-//static void	lateral_movs(t_game *game);
-//static void	rotation_movs(t_game *game);
 int			handle_movements(t_game *game);
 
 /* MAP2D.C */
-//void		draw_line(t_img *image, int x1, int y1, int x2, int y2);
-void		draw_line(t_img *image, t_data *data, int x, int y);
-int			touch(float px, float py, t_game *game);
-//void		draw_line(t_data *data, t_game *game, float start_x/* , int i */);
+void		draw_line(t_game *game, double start_x);
+int			touch(double px, double py, t_game *game);
 void		clear_image(t_img *image);
 void		put_pixel(int x, int y, int color, t_img *image);
 void		print_cube(int x, int y, int size, t_game *game);

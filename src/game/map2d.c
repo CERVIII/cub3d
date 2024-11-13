@@ -6,60 +6,14 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:56:11 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/12 15:32:09 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:49:02 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
-/* void	draw_line(t_img *image, int x1, int y1, int x2, int y2)
-{
-	int	step;
-	int	delta_x;
-	int	delta_y;
-
-	delta_x = x2 - x1;
-	delta_y = y2 - y1;
-	step = sqrt((delta_x * delta_x) + (delta_y * delta_y));
-	delta_x /= step;
-	delta_y /= step;
-	while (step)
-	{
-		put_pixel(x1, y1, 0xFF0000, image);
-		x1 += delta_x;
-		y1 += delta_y;
-		step--;
-	}
-} */
-
-void	draw_line(t_img *image, t_data *data, int x, int y)
-{
-	int	step;
-	int	i;
-	int	delta_x;
-	int	delta_y;
-
-	delta_x = x - data->player_xpx;
-	delta_y = y - data->player_ypx;
-	if (abs(delta_x) >= abs(delta_y))
-		step = abs(delta_x);
-	else
-		step = abs(delta_y);
-	delta_x /= step;
-	delta_y /= step;
-	x = data->player_xpx + 5;
-	y = data->player_ypx;
-	i = 0;
-	while (i < step)
-	{
-		put_pixel(x, y, 0xFF0000, image);
-		x += delta_x;
-		y += delta_y;
-		i++;
-	}
-}
 
 // touch function 
-int	touch(float px, float py, t_game *game)
+int	touch(double px, double py, t_game *game)
 {
 	int	x;
 	int	y;
@@ -71,40 +25,20 @@ int	touch(float px, float py, t_game *game)
 	return (0);
 }
 
-/* void	draw_line(t_data *data, t_game *game, float start_x, int i)
+void	draw_line(t_game *game, double start_x)
 {
-	float	cos_angle;
-	float	sin_angle;
-	float	ray_x;
-	float	ray_y;
-//	float	dist;
-//	float	height;
-//	int		start_y;
-//	int		end;
+	int	ray_x;
+	int	ray_y;
 
-	cos_angle = cos(start_x);
-	sin_angle = sin(start_x);
-	ray_x = data->player_x;
-	ray_y = data->player_y;
+	ray_x = game->data.player_xpx + 5;
+	ray_y = game->data.player_ypx;
 	while (!touch(ray_x, ray_y, game))
 	{
 		put_pixel(ray_x, ray_y, 0xFF0000, &game->image);
-		ray_x += cos_angle;
-		ray_y += sin_angle;
+		ray_x += cos(start_x);
+		ray_y += sin(start_x);
 	}
- 	if (!DEBUG)
-	{
-		dist = fixed_dist(data->player_x, data->player_y, ray_x, ray_y, game);
-		height = (WALL_SIZE / dist) * (SCREEN_X / 2);
-		start_y = (SCREEN_Y - height) / 2;
-		end = start_y + height;
-		while (start_y < end)
-		{
-			put_pixel(i, start_y, 255, game);
-			start_y++;
-		}
-	}
-} */
+}
 
 void	clear_image(t_img *image)
 {
@@ -153,24 +87,16 @@ void	print_cube(int x, int y, int size, t_game *game)
 
 void	print_player(int x, int y, t_game *game)
 {
-//	int		i;
-//	float	fraction;
-//	float	start_x;
+	double	start_x;
+	double	fraction;
 
+	fraction = PI / 3 / (WALL_SIZE * game->width);
+	start_x = (game->player.dir_x) - PI / 6;
+//	printf("FRACTION: %f, START_X: %f\n", fraction, start_x);
+	draw_line(game, start_x);
 	game->color = 0x00FF00;
-/* 	print_cube(x * WALL_SIZE + (WALL_SIZE / 2), \
-		y * WALL_SIZE + (WALL_SIZE / 2), 10, game); */
+	start_x += fraction;
 	print_cube(x, y, 10, game);
-//	fraction = 3.1416 / 3 / SCREEN_X;
-//	start_x = game->player.rot_speed - 3.1416 / 6;
-//	draw_line(&game->data, game, start_x);
-/* 	i = 0;
-	while(i < SCREEN_X)
-	{
-		draw_line(&game->data, game, start_x);
-		start_x += fraction;
-		i++;
-	} */
 }
 
 void	print_map2d(t_game *game)

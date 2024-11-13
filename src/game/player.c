@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:16:08 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/12 12:33:17 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:44:52 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ static void	lateral_movs(t_game *game)
 			game->data.player_xpx -= game->player.dir_y * 1;
 		}
 	}
-	printf("ACTUAL\n");
-	printf("pl_y: %f pl_x: %f\n", game->data.player_ypx, game->data.player_xpx);
-	printf("pl_y: %f pl_x: %f\n", game->data.player_y, game->data.player_x);
 }
 
 static void	horizontal_movs(t_game *game)
@@ -93,28 +90,38 @@ static void	horizontal_movs(t_game *game)
 			game->data.player_xpx -= game->player.dir_x * 1;
 		}
 	}
-	printf("DESPUES\n");
-	printf("pl_y: %f pl_x: %f\n", game->data.player_ypx, game->data.player_xpx);
-	printf("pl_y: %f pl_x: %f\n", game->data.player_y, game->data.player_x);
 }
 
-/* static void	rotation_player(t_game *game)
+static void	rotate(t_player *player, double speed)
 {
-	int	rot_speed;
+	double	sin_s;
+	double	cos_s;
+	double	old_dir_x;
+	double	old_plane_x;
 
-	rot_speed = 0;
+	old_dir_x = player->dir_x;
+	old_plane_x = player->plane_x;
+	sin_s = sin(speed);
+	cos_s = cos(speed);
+	player->dir_x = player->dir_x * cos_s - player->dir_y * sin_s;
+	player->dir_y = old_dir_x * sin_s + player->dir_y * cos_s;
+	player->plane_x = player->plane_x * cos_s - player->plane_y * sin_s;
+	player->plane_y = old_plane_x * sin_s + player->plane_y * cos_s;
+}
+
+static void	rotation_player(t_game *game)
+{
 	if (game->keys.left)
-		rot_speed -= game->player.rot_speed;
+		rotate(&game->player, -game->player.rot_speed);
 	else if (game->keys.right)
-		rot_speed -= game->player.rot_speed;
-	else
-		return ;
-} */
+		rotate(&game->player, game->player.rot_speed);
+	return ;
+}
 
 int	handle_movements(t_game *game)
 {
 	horizontal_movs(game);
 	lateral_movs(game);
-//	rotation_player(game);
+	rotation_player(game);
 	return (0);
 }

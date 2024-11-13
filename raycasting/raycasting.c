@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 11:13:34 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/12 14:25:51 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/13 12:53:39 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	draw_loop(t_game *game)
 	}
 	fraction = PI / 3 / WIDTH;
 	start_x = player->angle - PI / 6;
+	printf("FRACTION: %f, START_X: %f\n", fraction, start_x);
 	i = 0;
 	while (i < WIDTH)
 	{
