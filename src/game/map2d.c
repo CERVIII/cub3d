@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:56:11 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/13 15:49:02 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:34:15 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	draw_line(t_game *game, double start_x)
 	int	ray_x;
 	int	ray_y;
 
-	ray_x = game->data.player_xpx + 5;
-	ray_y = game->data.player_ypx;
+	ray_x = game->data.player_xpx;
+	ray_y = game->data.player_ypx - 5;
 	while (!touch(ray_x, ray_y, game))
 	{
 		put_pixel(ray_x, ray_y, 0xFF0000, &game->image);

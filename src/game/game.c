@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/13 15:29:13 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:32:25 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	init_game(t_game *game)
 	game->map = game->data.map;
 	game->heigh = game->data.heigh - 1;
 	game->width = game->data.width - 1;
-	game->player.move_speed = 0.025;
+	game->player.move_speed = 0.075;
 	game->player.rot_speed = 0.05;
 	y = 0;
 	while (game->map[y])
@@ -83,20 +83,18 @@ int	handle_loop(t_game *game)
 {
 	clear_image(&game->image);
 	print_map2d(game);
-	print_player(game->data.player_xpx, game->data.player_ypx, game);
+	print_player(game->data.player_xpx - 5, game->data.player_ypx - 5, game);
 	handle_movements(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win, \
 			game->image.img, 0, 0);
 	return (0);
 }
 
-void	init_mlx(t_game *game, t_mlx *mlx, t_img *image)
+void	init_mlx(t_mlx *mlx, t_img *image)
 {
 	mlx->mlx = mlx_init();
-	mlx->mlx_win = mlx_new_window(mlx->mlx, game->heigh * WALL_SIZE, \
-			game->width * WALL_SIZE, NAME);
-	image->img = mlx_new_image(mlx->mlx, game->heigh * WALL_SIZE, \
-			game->width * WALL_SIZE);
+	mlx->mlx_win = mlx_new_window(mlx->mlx, SCREEN_X, SCREEN_Y, NAME);
+	image->img = mlx_new_image(mlx->mlx, SCREEN_X, SCREEN_Y);
 	image->data = mlx_get_data_addr(image->img, \
 				&image->bpp, &image->len, &image->endian);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, image->img, 0, 0);
@@ -105,7 +103,7 @@ void	init_mlx(t_game *game, t_mlx *mlx, t_img *image)
 void	ft_game(t_game *game)
 {
 	init_game(game);
-	init_mlx(game, &game->mlx, &game->image);
+	init_mlx(&game->mlx, &game->image);
 	mlx_hook(game->mlx.mlx_win, DESTROY, 0, &end_program, game);
 	mlx_hook(game->mlx.mlx_win, KEY_PRESS, (1L << 0), &pulse_key, game);
 	mlx_hook(game->mlx.mlx_win, KEY_OFF, (1L << 1), &release_key, game);

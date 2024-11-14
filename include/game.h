@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/13 12:49:02 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:48:28 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,10 @@
 # include "../minilibx_opengl/minilibx_opengl_20191021/mlx.h"
 # include "../minilibx-linux/mlx.h"
 
-# define FL "./sprites/floor.xpm"
-# define WL "./sprites/wall.xpm"
-//# define PL "./sprites/pl_circle.xpm"
-# define PL "./sprites/2d_player.xpm"
-
 # define NAME "CUB3D"
 # define WALL_SIZE 40
-# define SCREEN_X 800
-# define SCREEN_Y 800
+# define SCREEN_X 1000
+# define SCREEN_Y 1000
 # define PI 3.14159265359
 
 # define KEY_PRESS 2
@@ -137,7 +132,7 @@ void		print_player(int x, int y, t_game *game);
 void		print_map2d(t_game *game);
 
 /* GAME.C */
-void		init_mlx(t_game *game, t_mlx *mlx, t_img *img);
+void		init_mlx(t_mlx *mlx, t_img *img);
 void		init_game(t_game *game);
 void		ft_game(t_game *game);
 
