@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:56:11 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/14 13:34:15 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:06:57 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,6 @@ int	touch(double px, double py, t_game *game)
 	if (game->map[y][x] == '1')
 		return (1);
 	return (0);
-}
-
-void	draw_line(t_game *game, double start_x)
-{
-	int	ray_x;
-	int	ray_y;
-
-	ray_x = game->data.player_xpx;
-	ray_y = game->data.player_ypx - 5;
-	while (!touch(ray_x, ray_y, game))
-	{
-		put_pixel(ray_x, ray_y, 0xFF0000, &game->image);
-		ray_x += cos(start_x);
-		ray_y += sin(start_x);
-	}
 }
 
 void	clear_image(t_img *image)
@@ -87,15 +72,7 @@ void	print_cube(int x, int y, int size, t_game *game)
 
 void	print_player(int x, int y, t_game *game)
 {
-	double	start_x;
-	double	fraction;
-
-	fraction = PI / 3 / (WALL_SIZE * game->width);
-	start_x = (game->player.dir_x) - PI / 6;
-//	printf("FRACTION: %f, START_X: %f\n", fraction, start_x);
-	draw_line(game, start_x);
 	game->color = 0x00FF00;
-	start_x += fraction;
 	print_cube(x, y, 10, game);
 }
 
