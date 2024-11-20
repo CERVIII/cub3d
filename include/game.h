@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/20 11:30:29 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:52:22 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,17 @@ typedef struct s_player
 	double	rot_speed;
 }	t_player;
 
+typedef struct s_ray
+{
+	double	ray_x;
+	double	ray_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	ray_angle;
+	double	dist;
+	double	height;
+}	t_ray;
+
 typedef struct s_mlx
 {
 	void		*mlx;
@@ -108,8 +119,9 @@ typedef struct s_game
 	char		**map;
 	char		**texture;
 	t_keys		keys;
-	t_mlx		mlx;
 	t_player	player;
+	t_ray		ray;
+	t_mlx		mlx;
 	t_img		image;
 	t_data		data;
 }	t_game;
@@ -123,13 +135,18 @@ int			release_key(int key, t_game *game);
 int			handle_movements(t_game *game);
 
 /* MAP2D.C */
-void		draw_line(t_game *game, double start_x);
 int			touch(double px, double py, t_game *game);
 void		clear_image(t_img *image);
 void		put_pixel(int x, int y, int color, t_img *image);
 void		print_cube(int x, int y, int size, t_game *game);
 void		print_player(int x, int y, t_game *game);
 void		print_map2d(t_game *game);
+
+/* RAYCASTING.C */
+double		distance(double x, double y);
+double		ray_dist(t_ray *ray, t_player *player);
+void		draw_line(t_game *game, t_ray *ray, int i);
+void		print_rays(t_game *game);
 
 /* GAME.C */
 void		init_mlx(t_mlx *mlx, t_img *img);

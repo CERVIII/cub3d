@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/13 11:02:08 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:04:09 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
 # endif
+
+# define MINIMAP 1
 
 /* # define PJ "./Sprites/Pacman_HD.xpm"
 # define PJL "./Sprites/pac_semi_left.xpm"

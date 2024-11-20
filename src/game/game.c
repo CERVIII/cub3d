@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/20 11:36:02 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:45:00 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,52 +79,15 @@ void	init_game(t_game *game)
 	init_key(&game->keys);
 }
 
-void	draw_line(t_game *game, double ray_angle)
-{
-	double	ray_x;
-	double	ray_y;
-	double	step_x;
-	double	step_y;
-
-	ray_x = game->data.player_xpx;
-	ray_y = game->data.player_ypx;
-	step_x = cos(ray_angle);
-	step_y = sin(ray_angle);
-	while (!touch((int)ray_x, (int)ray_y, game))
-	{
-		put_pixel((int)ray_x, (int)ray_y, 0xFF0000, &game->image);
-		ray_x += step_x;
-		ray_y += step_y;
-	}
-}
-
-void	print_rays(t_game *game)
-{
-	int		i;
-	double	start_angle;
-	double	angle_step;
-	double	current_angle;
-	double	player_angle;
-
-	player_angle = atan2(game->player.dir_y, game->player.dir_x);
-	start_angle = player_angle - (PI / 6);
-	angle_step = (PI / 3) / SCREEN_X;
-	current_angle = start_angle;
-	i = 0;
-	while (i < SCREEN_X)
-	{
-		draw_line(game, current_angle);
-		current_angle += angle_step;
-		i++;
-	}
-}
-
 int	handle_loop(t_game *game)
 {
 	clear_image(&game->image);
 	handle_movements(game);
-	print_map2d(game);
-	print_player(game->data.player_xpx - 5, game->data.player_ypx - 5, game);
+	if (MINIMAP)
+	{
+		print_map2d(game);
+		print_player(game->data.player_xpx - 5, game->data.player_ypx - 5, game);
+	}
 	print_rays(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win, \
 			game->image.img, 0, 0);
