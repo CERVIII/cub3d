@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:10:21 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/28 21:47:02 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:58:26 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ void	init_map(t_data *data, char **map)
 	int		i;
 	int		j;
 
-	data->heigh = get_heigh(map) + 3;
-	data->width = get_width(map) + 3;
-	data->map = (char **)ft_calloc(sizeof(char *), data->heigh);
+	data->heigh = get_heigh(map) + 2;
+	data->width = get_width(map) + 2;
+	data->map = (char **)ft_calloc(sizeof(char *), data->heigh + 1);
 	i = 0;
-	while (i < data->heigh - 1)
+	while (i < data->heigh)
 	{
 		j = 0;
-		data->map[i] = (char *)ft_calloc(sizeof(char), data->width);
-		while (j < data->width - 1)
+		data->map[i] = (char *)ft_calloc(sizeof(char), data->width + 1);
+		while (j < data->width)
 			data->map[i][j++] = ' ';
 		i++;
 	}
