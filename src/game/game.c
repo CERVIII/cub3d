@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/20 12:45:00 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/21 15:29:51 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	init_game(t_game *game)
 	game->map = game->data.map;
 	game->heigh = game->data.heigh;
 	game->width = game->data.width;
-	game->player.move_speed = 0.1;
+	game->player.move_speed = 0.025;
 	game->player.rot_speed = 0.05;
 	y = 0;
 	while (game->map[y])
@@ -86,9 +86,9 @@ int	handle_loop(t_game *game)
 	if (MINIMAP)
 	{
 		print_map2d(game);
-		print_player(game->data.player_xpx - 5, game->data.player_ypx - 5, game);
+		print_player(game->data.player_xpx, game->data.player_ypx, game);
 	}
-	print_rays(game);
+	raycasting(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win, \
 			game->image.img, 0, 0);
 	return (0);

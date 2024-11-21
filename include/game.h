@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/20 15:52:22 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/21 15:17:15 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # include "../minilibx-linux/mlx.h"
 
 # define NAME "CUB3D"
-# define WALL_SIZE 40
-# define SCREEN_X 1000
-# define SCREEN_Y 1000
+# define WALL_SIZE 5
+# define SCREEN_X 800
+# define SCREEN_Y 800
 # define PI 3.14159265359
 
 # define KEY_PRESS 2
@@ -78,13 +78,23 @@ typedef struct s_player
 
 typedef struct s_ray
 {
+	double	angle;
 	double	ray_x;
 	double	ray_y;
+	double	ray_angle;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	dist;
+	double	delta_x;
+	double	delta_y;
 	double	side_dist_x;
 	double	side_dist_y;
-	double	ray_angle;
-	double	dist;
+	int		map_x;
+	int		map_y;
+	double	step_x;
+	double	step_y;
 	double	height;
+	int		hit;
 }	t_ray;
 
 typedef struct s_mlx
@@ -143,6 +153,13 @@ void		print_player(int x, int y, t_game *game);
 void		print_map2d(t_game *game);
 
 /* RAYCASTING.C */
+void		init_nextraystep(t_ray *ray);
+void		init_ray(t_game *game, t_ray *ray, int i);
+void		calculate_distance(t_ray *ray);
+void		draw_wall(t_game *game, t_ray *ray, int x);
+void		dda(t_game *game, t_ray *ray);
+void		raycasting(t_game *game);
+
 double		distance(double x, double y);
 double		ray_dist(t_ray *ray, t_player *player);
 void		draw_line(t_game *game, t_ray *ray, int i);
