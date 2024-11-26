@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:26:27 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/21 15:43:31 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:30:32 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +84,6 @@ void	calculate_distance(t_ray *ray)
 	}
 }
 
-/* int	get_color(t_ray *ray)
-{
-	if (ray->hit == 0)
-	{
-		if (ray->angle)
-	}
-	else
-	{
-		
-	}
-} */
-
 void	draw_wall(t_game *game, t_ray *ray, int x)
 {
 	int	line_height;
@@ -114,9 +102,19 @@ void	draw_wall(t_game *game, t_ray *ray, int x)
 	while (y < draw_end)
 	{
 		if (ray->hit == 0)
-			put_pixel(x, y, 0xFF0000, &game->image);
+		{
+			if (ray->ray_dir_x > 0)		// EAST
+				put_pixel(x, y, 0xFF0000, &game->image);
+			else
+				put_pixel(x, y, 0x555500, &game->image);
+		}
 		else
-			put_pixel(x, y, 0x00FF00, &game->image);
+		{
+			if (ray->ray_dir_y > 0)		// SOUTH
+				put_pixel(x, y, 0x00FF00, &game->image);
+			else
+				put_pixel(x, y, 0x005555, &game->image);
+		}
 		y++;
 	}
 }
