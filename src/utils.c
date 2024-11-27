@@ -6,11 +6,16 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:46:16 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/12 14:24:04 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/27 12:26:08 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	rgb_to_hex(int r, int g, int b)
+{
+	return ((r << 16) | (g << 8) | b);
+}
 
 int	get_heigh(char **map)
 {

@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/21 15:17:15 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:20:43 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "../minilibx-linux/mlx.h"
 
 # define NAME "CUB3D"
-# define WALL_SIZE 5
+# define WALL_SIZE 20
 # define SCREEN_X 800
 # define SCREEN_Y 800
 # define PI 3.14159265359
@@ -78,7 +78,7 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	double	angle;
+	double	player_angle;
 	double	ray_x;
 	double	ray_y;
 	double	ray_angle;

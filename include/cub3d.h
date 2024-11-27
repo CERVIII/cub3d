@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/21 14:19:12 by pcervill         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:53:17 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 # define WHITE  "\x1B[37m"
 
 /* UTILS.C */
+int		rgb_to_hex(int r, int g, int b);
 int		get_heigh(char **map);
 int		get_width(char **map);
 void	init_data(t_data *data);
