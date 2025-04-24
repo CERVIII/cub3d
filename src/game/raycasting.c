@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:26:27 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/27 14:18:50 by pcervill         ###   ########.fr       */
+/*   Updated: 2025/04/24 16:35:27 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,22 +124,7 @@ void	draw_wall(t_game *game, t_ray *ray, int x)
 	if (draw_end >= SCREEN_Y)
 		draw_end = SCREEN_Y - 1;
 	while (draw_start++ < draw_end)
-	{
-		if (ray->hit == 0)
-		{
-			if (ray->ray_dir_x < 0)							// WEST
-				put_pixel(x, draw_start, 0xFF0000, &game->image);
-			else											// EAST
-				put_pixel(x, draw_start, 0xFF00FF, &game->image);
-		}
-		else
-		{
-			if (ray->ray_dir_y < 0)							// NORTH
-				put_pixel(x, draw_start, 0x00FF00, &game->image);
-			else											// SOUTH
-				put_pixel(x, draw_start, 0x00FFFF, &game->image);
-		}
-	}
+		paint_texture(x, draw_start, ray, game);
 }
 
 void	dda(t_game *game, t_ray *ray)

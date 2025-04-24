@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/27 14:20:43 by pcervill         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:00:51 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,17 @@ typedef struct s_img
 	int		bpp;
 }	t_img;
 
+typedef struct s_texture
+{
+	void	*img;
+	int		*data;
+	int		endian;
+	int		bpp;
+	int		line_len;
+	int		w;
+	int		h;
+}	t_texture;
+
 typedef struct s_game
 {
 	int			heigh;
@@ -128,6 +139,10 @@ typedef struct s_game
 	int			color;
 	char		**map;
 	char		**texture;
+	t_texture	textures[4];
+	// t_texture	texture_so;
+	// t_texture	texture_we;
+	// t_texture	texture_ea;
 	t_keys		keys;
 	t_player	player;
 	t_ray		ray;
@@ -140,6 +155,14 @@ typedef struct s_game
 int			end_program(void *l);
 int			pulse_key(int key, t_game *game);
 int			release_key(int key, t_game *game);
+
+/* TEXTURE.C */
+int			get_tex_x(int tex_w, t_ray *ray);
+int			get_tex_y(int screen_y, int tex_h, t_ray *ray);
+uint32_t	get_color(int screen_y, int orientation, t_ray *ray, t_game *game);
+void		paint_texture(int x, int draw_start, t_ray *ray, t_game *game);
+void		load_wall_textures(t_game *game);
+t_texture	load_xpm_texture(char *path, t_game *game);
 
 /* PLAYER.C */
 int			handle_movements(t_game *game);

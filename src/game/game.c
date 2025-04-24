@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2024/11/21 15:29:51 by pcervill         ###   ########.fr       */
+/*   Updated: 2025/04/24 16:04:17 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	ft_game(t_game *game)
 {
 	init_game(game);
 	init_mlx(&game->mlx, &game->image);
+	load_wall_textures(game);
 	mlx_hook(game->mlx.mlx_win, DESTROY, 0, &end_program, game);
 	mlx_hook(game->mlx.mlx_win, KEY_PRESS, (1L << 0), &pulse_key, game);
 	mlx_hook(game->mlx.mlx_win, KEY_OFF, (1L << 1), &release_key, game);
