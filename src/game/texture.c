@@ -6,7 +6,7 @@
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:18:59 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/04/24 17:01:12 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/04/24 19:48:41 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	get_tex_x(int tex_w, t_ray *ray)
 
 int	get_tex_y(int screen_y, int tex_h, t_ray *ray)
 {
-	int	tex_y;
-	int	draw_start;
-	double tex_pos;
-	double step;
+	int		tex_y;
+	int		draw_start;
+	double	tex_pos;
+	double	step;
 
 	draw_start = -((int)(SCREEN_Y / ray->dist)) / 2 + SCREEN_Y / 2;
 	step = (double)tex_h / (double)((int)(SCREEN_Y / ray->dist));
@@ -64,36 +64,28 @@ void	paint_texture(int x, int draw_start, t_ray *ray, t_game *game)
 	orientation = 0;
 	if (ray->hit == 0)
 	{
-		if (ray->ray_dir_x < 0)							// WEST
+		if (ray->ray_dir_x < 0)
 			orientation = 2;
-		else											// EAST
+		else
 			orientation = 3;
 	}
 	else
 	{
-		if (ray->ray_dir_y < 0)							// NORTH
+		if (ray->ray_dir_y < 0)
 			orientation = 0;
-		else											// SOUTH
+		else
 			orientation = 1;
 	}
-	put_pixel(x, draw_start, 
-		   get_color(draw_start, orientation, ray, game), &game->image);
-}
-
-void	load_wall_textures(t_game *game)
-{
-	game->textures[0] = load_xpm_texture(game->data.no, game);
-	game->textures[1] = load_xpm_texture(game->data.so, game);
-	game->textures[2] = load_xpm_texture(game->data.we, game);
-	game->textures[3] = load_xpm_texture(game->data.ea, game);
+	put_pixel(x, draw_start,
+		get_color(draw_start, orientation, ray, game), &game->image);
 }
 
 t_texture	load_xpm_texture(char *path, t_game *game)
 {
-	t_texture texture;
+	t_texture	texture;
 
 	texture.img = mlx_xpm_file_to_image(game->mlx.mlx,
-									 path, &texture.w, &texture.h); 
+			path, &texture.w, &texture.h);
 	if (!texture.img)
 	{
 		texture.img = NULL;
@@ -101,6 +93,6 @@ t_texture	load_xpm_texture(char *path, t_game *game)
 	}
 	else
 		texture.data = (int *)mlx_get_data_addr(texture.img, &texture.bpp,
-										  &texture.line_len, &texture.endian);
+				&texture.line_len, &texture.endian);
 	return (texture);
 }

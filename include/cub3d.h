@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2025/04/17 13:09:28 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/04/24 19:41:33 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ int		rgb_to_hex(int r, int g, int b);
 int		get_heigh(char **map);
 int		get_width(char **map);
 void	init_data(t_data *data);
+
+/* FREE_UTILS.C */
 void	free_array(char **str);
+void	free_texture(t_data *data);
 void	free_all(t_data *data);
 int		ft_error(char *error, t_data *data, char *file);
 

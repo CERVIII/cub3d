@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:26:27 by pcervill          #+#    #+#             */
-/*   Updated: 2025/04/24 16:35:27 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/04/24 19:49:14 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,67 +22,6 @@ int	touch(double px, double py, t_game *game)
 	if (game->map[y][x] == '1' || game->map[y][x] == ' ')
 		return (1);
 	return (0);
-}
-
-void	init_nextraystep(t_ray *ray)
-{
-	if (ray->ray_dir_x < 0)
-	{
-		ray->step_x = -1;
-		ray->side_dist_x = (ray->ray_x - ray->map_x) * ray->delta_x;
-	}
-	else
-	{
-		ray->step_x = 1;
-		ray->side_dist_x = (ray->map_x + 1.0 - ray->ray_x) * ray->delta_x;
-	}
-	if (ray->ray_dir_y < 0)
-	{
-		ray->step_y = -1;
-		ray->side_dist_y = (ray->ray_y - ray->map_y) * ray->delta_y;
-	}
-	else
-	{
-		ray->step_y = 1;
-		ray->side_dist_y = (ray->map_y + 1.0 - ray->ray_y) * ray->delta_y;
-	}
-}
-
-void	init_ray(t_game *game, t_ray *ray, int i)
-{
-	double	pos_camera;
-
-	pos_camera = 2 * i / (double)SCREEN_X - 1;
-	ray->player_angle = atan2(game->player.dir_y, game->player.dir_x);
-	ray->ray_angle = ray->player_angle + pos_camera * (PI / 6);
-	ray->ray_x = game->data.player_xpx;
-	ray->ray_y = game->data.player_ypx;
-	ray->map_x = ray->ray_x;
-	ray->map_y = ray->ray_y;
-	ray->ray_dir_x = cos(ray->ray_angle);
-	ray->ray_dir_y = sin(ray->ray_angle);
-	ray->delta_x = fabs(1 / ray->ray_dir_x);
-	ray->delta_y = fabs(1 / ray->ray_dir_y);
-	init_nextraystep(ray);
-	return ;
-}
-
-void	calculate_distance(t_ray *ray)
-{
-	if (ray->hit == 0)
-	{
-	ray->dist = (ray->map_x - ray->ray_x + (1 - ray->step_x) \
-			/ 2) / ray->ray_dir_x;
-		ray->dist = ray->side_dist_x - ray->delta_x;
-//		ray->dist = ray->side_dist_x / cos(ray->ray_angle - ray->player_angle);
-	}
-	else
-	{
-	ray->dist = (ray->map_y - ray->ray_y + (1 - ray->step_y) \
-			/ 2) / ray->ray_dir_y;
-		ray->dist = ray->side_dist_y - ray->delta_y;
-//		ray->dist = ray->side_dist_y / cos(ray->ray_angle - ray->player_angle);
-	}
 }
 
 void	draw_floor_sky(t_game *game, int x)

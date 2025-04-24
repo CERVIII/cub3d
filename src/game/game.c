@@ -6,38 +6,12 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2025/04/24 16:04:17 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/04/24 19:49:36 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "game.h"
-
-void	get_direction(t_game *game, char c)
-{
-	if (c == 'N')
-	{
-		game->player.dir_x = 0;
-		game->player.dir_y = -1;
-	}
-	else if (c == 'S')
-	{
-		game->player.dir_x = 0;
-		game->player.dir_y = 1;
-	}
-	else if (c == 'W')
-	{
-		game->player.dir_x = -1;
-		game->player.dir_y = 0;
-	}
-	else if (c == 'E')
-	{
-		game->player.dir_x = 1;
-		game->player.dir_y = 0;
-	}
-	game->player.plane_x = game->player.dir_y * 0.66;
-	game->player.plane_y = game->player.dir_x * 0.66;
-}
 
 void	init_key(t_keys *key)
 {
@@ -89,8 +63,8 @@ int	handle_loop(t_game *game)
 		print_player(game->data.player_xpx, game->data.player_ypx, game);
 	}
 	raycasting(game);
-	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win, \
-			game->image.img, 0, 0);
+	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win,
+		game->image.img, 0, 0);
 	return (0);
 }
 
@@ -99,8 +73,8 @@ void	init_mlx(t_mlx *mlx, t_img *image)
 	mlx->mlx = mlx_init();
 	mlx->mlx_win = mlx_new_window(mlx->mlx, SCREEN_X, SCREEN_Y, NAME);
 	image->img = mlx_new_image(mlx->mlx, SCREEN_X, SCREEN_Y);
-	image->data = mlx_get_data_addr(image->img, \
-				&image->bpp, &image->len, &image->endian);
+	image->data = mlx_get_data_addr(image->img,
+			&image->bpp, &image->len, &image->endian);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, image->img, 0, 0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2025/04/24 17:00:51 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/04/24 19:51:41 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,11 +161,16 @@ int			get_tex_x(int tex_w, t_ray *ray);
 int			get_tex_y(int screen_y, int tex_h, t_ray *ray);
 uint32_t	get_color(int screen_y, int orientation, t_ray *ray, t_game *game);
 void		paint_texture(int x, int draw_start, t_ray *ray, t_game *game);
-void		load_wall_textures(t_game *game);
 t_texture	load_xpm_texture(char *path, t_game *game);
 
 /* PLAYER.C */
 int			handle_movements(t_game *game);
+
+/* MOVES.C */
+void		handle_right_movs(double speed, char **map, t_game *game);
+void		handle_left_movs(double speed, char **map, t_game *game);
+void		handle_forward_movs(double speed, char **map, t_game *game);
+void		handle_back_movs(double speed, char **map, t_game *game);
 
 /* MAP2D.C */
 int			touch(double px, double py, t_game *game);
@@ -176,9 +181,6 @@ void		print_player(int x, int y, t_game *game);
 void		print_map2d(t_game *game);
 
 /* RAYCASTING.C */
-void		init_nextraystep(t_ray *ray);
-void		init_ray(t_game *game, t_ray *ray, int i);
-void		calculate_distance(t_ray *ray);
 void		draw_wall(t_game *game, t_ray *ray, int x);
 void		dda(t_game *game, t_ray *ray);
 void		raycasting(t_game *game);
@@ -187,6 +189,13 @@ double		distance(double x, double y);
 double		ray_dist(t_ray *ray, t_player *player);
 void		draw_line(t_game *game, t_ray *ray, int i);
 void		print_rays(t_game *game);
+
+/* EXTRA.C */
+void		get_direction(t_game *game, char c);
+void		load_wall_textures(t_game *game);
+void		init_nextraystep(t_ray *ray);
+void		init_ray(t_game *game, t_ray *ray, int i);
+void		calculate_distance(t_ray *ray);
 
 /* GAME.C */
 void		init_mlx(t_mlx *mlx, t_img *img);

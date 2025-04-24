@@ -6,7 +6,7 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2025/04/24 16:05:02 by mpenas-z         ###   ########.fr        #
+#    Updated: 2025/04/24 19:49:47 by mpenas-z         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@ CFLAGS =	-Wall -Werror -Wextra -I ./include -I ./libft -I $(MLX_DIR) \
 			-g -g3 -fsanitize=address
 RM = rm -f
 
-SRC_SRC =	main.c utils.c
-PRS_SRC =	parser.c parser_file.c parser_texture.c parser_map.c
-GME_SRC =	game.c map2d.c events.c player.c raycasting.c texture.c
+SRC_SRC =	main.c utils.c free_utils.c
+PRS_SRC =	parser.c parser_file.c parser_texture.c parser_map.c parser_check.c
+GME_SRC =	game.c map2d.c events.c player.c raycasting.c texture.c moves.c extra.c
 
 ifeq ($(UNAME),Darwin)
 	MLX_DIR = ./minilibx_opengl/minilibx_opengl_20191021/
