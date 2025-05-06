@@ -6,7 +6,7 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2025/05/06 17:59:44 by mpenas-z         ###   ########.fr        #
+#    Updated: 2025/05/06 18:59:00 by mpenas-z         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,19 +27,13 @@ BNS_SRC =	game_bonus.c map2d_bonus.c events_bonus.c player_bonus.c \
 
 ifeq ($(UNAME),Darwin)
 	MLX_DIR = ./minilibx_opengl/minilibx_opengl_20191021/
+	MLX_PATH =	${MLX_DIR}/libmlx.a
 	MFLAGS = -L $(MLX_DIR) $(MLX_DIR)libmlx.a -lmlx -framework OpenGL -framework AppKit
 else
 	MLX_DIR =	./minilibx-linux
 	MLX_PATH =	${MLX_DIR}/libmlx.a
 	MFLAGS =	-L $(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd
 endif
-
-# LIBFT
-LIBFT_AR := $(LIBFT_DIR)/libft.a
-# MLX
-MLX_AR := $(if $(filter Darwin,$(UNAME)), \
-               $(MLX_DIR)libmlx.a, \
-               $(MLX_DIR)/libmlx.a)
 
 SRC = $(SRC_SRC) $(PRS_SRC) $(GME_SRC)
 BONUS_SRC = $(SRC_SRC) $(PRS_SRC) $(BNS_SRC)
@@ -83,18 +77,18 @@ $(OBJ_DIR)%.o: $(GME_DIR)%.c
 $(OBJ_DIR)%.o: $(BNS_DIR)%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-
+$(MLX_PATH):
 	@echo " \033[33m[ .. ] | Compiling minilibx..\033[0m"
 	@$(MAKE) -C $(MLX_DIR) > /dev/null 2>&1
 	@echo " \033[32m[ OK ] | ✅ Minilibx ready! ✅\033[0m"
 
 # LIBFT
-$(LIBFT_AR):
+$(LIBFT):
 	@make -C $(LIBFT_DIR) --silent
 	@echo " \033[32m[ OK ] | ✅ Libft ready! ✅\033[0m"
 
 # basic library compiled
-$(NAME): $(OBJ)
+$(NAME): $(LIBFT) $(MLX_PATH) $(OBJ)
 	@echo " \033[33m[ .. ] | Compiling $(NAME)... \033[0m"
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(MFLAGS)
 	@echo " \033[32m[ OK ] | ✅ $(NAME) ready! ✅\033[0m"
@@ -103,14 +97,9 @@ $(NAME): $(OBJ)
 bonus: $(OBJ_DIR) $(LIBFT_DIR) $(BONUS_NAME)
 	@echo " \033[36m[ 🕹️  ] | READY TO PLAY!\033[0m"
 
-$(BONUS_NAME): $(BOBJ)
-	@echo " \033[33m[ .. ] | Compiling minilibx..\033[0m"
-	@$(MAKE) -C $(MLX_DIR) > /dev/null 2>&1
-	@echo " \033[32m[ OK ] | ✅ Minilibx ready! ✅\033[0m"
-	@make -C $(LIBFT_DIR) --silent
-	@echo " \033[32m[ OK ] | ✅ Libft ready! ✅\033[0m"
+$(BONUS_NAME): $(LIBFT) $(MLX_PATH) $(BOBJ)
 	@echo " \033[33m[ .. ] | Compiling $(NAME) BONUS... \033[0m"
-	@$(CC) $(CFLAGS) $(BOBJ) $(LIBFT) -o $(BONUS_NAME) $(MFLAGS)
+	@$(CC) $(CFLAGS) $(BOBJ) $(LIBFT) -o cub3D $(MFLAGS)
 	@echo " \033[32m[ OK ] | ✅ $(NAME) ready! ✅\033[0m"
 
 # all .o files removed
