@@ -6,20 +6,24 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2025/04/24 19:49:47 by mpenas-z         ###   ########.fr        #
+#    Updated: 2025/05/06 17:59:44 by mpenas-z         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 UNAME := $(shell uname)
 NAME = cub3D
-CC = gcc
+BONUS_NAME = cub3D_bonus
+CC = cc
 CFLAGS =	-Wall -Werror -Wextra -I ./include -I ./libft -I $(MLX_DIR) \
 			-g -g3 -fsanitize=address
 RM = rm -f
 
 SRC_SRC =	main.c utils.c free_utils.c
 PRS_SRC =	parser.c parser_file.c parser_texture.c parser_map.c parser_check.c
-GME_SRC =	game.c map2d.c events.c player.c raycasting.c texture.c moves.c extra.c
+GME_SRC =	game.c map2d.c events.c player.c \
+			raycasting.c texture.c moves.c extra.c
+BNS_SRC =	game_bonus.c map2d_bonus.c events_bonus.c player_bonus.c \
+			raycasting_bonus.c texture_bonus.c moves_bonus.c extra_bonus.c
 
 ifeq ($(UNAME),Darwin)
 	MLX_DIR = ./minilibx_opengl/minilibx_opengl_20191021/
@@ -27,22 +31,34 @@ ifeq ($(UNAME),Darwin)
 else
 	MLX_DIR =	./minilibx-linux
 	MLX_PATH =	${MLX_DIR}/libmlx.a
-	MFLAGS =	-L $(MLX_DIR) -lmlx -lXext -lX11 -lXpm -lm -lbsd
+	MFLAGS =	-L $(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd
 endif
 
-SRC = $(SRC_SRC) $(PRS_SRC) $(GME_SRC)
+# LIBFT
+LIBFT_AR := $(LIBFT_DIR)/libft.a
+# MLX
+MLX_AR := $(if $(filter Darwin,$(UNAME)), \
+               $(MLX_DIR)libmlx.a, \
+               $(MLX_DIR)/libmlx.a)
 
-INCLUDES = ./include/cub3d.h ./include/parser.h ./include/game.h ./libft/libft.h
+SRC = $(SRC_SRC) $(PRS_SRC) $(GME_SRC)
+BONUS_SRC = $(SRC_SRC) $(PRS_SRC) $(BNS_SRC)
+
+INCLUDES = ./include/cub3d.h ./include/parser.h ./include/game.h \
+		   ./libft/libft.h ./include/bonus.h
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
 SRC_DIR = ./src/
 PRS_DIR = $(SRC_DIR)parser/
 GME_DIR = $(SRC_DIR)game/
+BNS_DIR = $(SRC_DIR)game_bonus/
 OBJ_DIR = ./obj/
 
 OBJ_FILES = $(SRC:.c=.o)
+BOBJ_FILES = $(BONUS_SRC:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
+BOBJ = $(addprefix $(OBJ_DIR), $(BOBJ_FILES))
 
 # RULES
 all: $(OBJ_DIR) $(LIBFT_DIR) $(NAME)
@@ -63,20 +79,43 @@ $(OBJ_DIR)%.o: $(PRS_DIR)%.c
 $(OBJ_DIR)%.o: $(GME_DIR)%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
+# Objects for BONUS
+$(OBJ_DIR)%.o: $(BNS_DIR)%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+
+	@echo " \033[33m[ .. ] | Compiling minilibx..\033[0m"
+	@$(MAKE) -C $(MLX_DIR) > /dev/null 2>&1
+	@echo " \033[32m[ OK ] | ✅ Minilibx ready! ✅\033[0m"
+
+# LIBFT
+$(LIBFT_AR):
+	@make -C $(LIBFT_DIR) --silent
+	@echo " \033[32m[ OK ] | ✅ Libft ready! ✅\033[0m"
+
 # basic library compiled
 $(NAME): $(OBJ)
+	@echo " \033[33m[ .. ] | Compiling $(NAME)... \033[0m"
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(MFLAGS)
+	@echo " \033[32m[ OK ] | ✅ $(NAME) ready! ✅\033[0m"
+
+# bonus compiled
+bonus: $(OBJ_DIR) $(LIBFT_DIR) $(BONUS_NAME)
+	@echo " \033[36m[ 🕹️  ] | READY TO PLAY!\033[0m"
+
+$(BONUS_NAME): $(BOBJ)
 	@echo " \033[33m[ .. ] | Compiling minilibx..\033[0m"
 	@$(MAKE) -C $(MLX_DIR) > /dev/null 2>&1
 	@echo " \033[32m[ OK ] | ✅ Minilibx ready! ✅\033[0m"
 	@make -C $(LIBFT_DIR) --silent
 	@echo " \033[32m[ OK ] | ✅ Libft ready! ✅\033[0m"
-	@echo " \033[33m[ .. ] | Compiling $(NAME)... \033[0m"
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(MFLAGS)
+	@echo " \033[33m[ .. ] | Compiling $(NAME) BONUS... \033[0m"
+	@$(CC) $(CFLAGS) $(BOBJ) $(LIBFT) -o $(BONUS_NAME) $(MFLAGS)
 	@echo " \033[32m[ OK ] | ✅ $(NAME) ready! ✅\033[0m"
 
 # all .o files removed
 clean:
-	@$(RM) $(OBJ)
+	@$(RM) $(OBJ) $(BOBJ)
 	@make clean -C libft --silent
 	@rm -rf $(OBJ_DIR)
 
