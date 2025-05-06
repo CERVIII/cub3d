@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:45:15 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/06 20:14:24 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:19:36 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	mouse_move(int x, int y, t_game *game)
 	double	dx;
 
 	(void)y;
-	if (game->keys.last_mouse_pos == 0)
+	if (game->keys.last_mouse_pos == -1)
 		game->keys.last_mouse_pos = x;
 	dx = (x - game->keys.last_mouse_pos) * game->player.mouse_speed;
 	rotate(&game->player, dx);

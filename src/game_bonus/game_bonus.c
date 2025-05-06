@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/06 20:16:58 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:20:27 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_key(t_keys *key)
 	key->left = 0;
 	key->right = 0;
 	key->esc = 0;
-	key->last_mouse_pos = 0;
+	key->last_mouse_pos = -1;
 }
 
 void	init_game(t_game *game)
@@ -82,7 +82,6 @@ void	init_mlx(t_mlx *mlx, t_img *image)
 
 void	ft_game(t_game *game)
 {
-	printf("USING BONUS GAME\n");
 	init_game(game);
 	init_mlx(&game->mlx, &game->image);
 	load_wall_textures(game);
