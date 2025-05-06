@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/06 20:02:47 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:09:43 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../minilibx_opengl/minilibx_opengl_20191021/mlx.h"
 # include "../minilibx-linux/mlx.h"
 # include "libft.h"
 # include "parser.h"
-# include "game.h"
+# include "game_bonus.h"
 # include <unistd.h>
 # include <sys/types.h>
 # include <stdio.h>

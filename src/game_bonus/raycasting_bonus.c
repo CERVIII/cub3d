@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:26:27 by pcervill          #+#    #+#             */
-/*   Updated: 2025/04/24 19:49:14 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:11:50 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "game_bonus.h"
 
 int	touch(double px, double py, t_game *game)
 {

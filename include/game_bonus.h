@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus.h                                            :+:      :+:    :+:   */
+/*   game_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:48:08 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/05/06 16:48:10 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:15:15 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_H
-# define GAME_H
+#ifndef GAME_BONUS_H
+# define GAME_BONUS_H
 
-# include "cub3d.h"
+# include "cub3d_bonus.h"
 # include <string.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -52,6 +52,7 @@
 # define DW 65364
 # define ESC_L 65307
 # define DESTROY 17
+# define MOUSE 6
 
 typedef struct s_keys
 {
@@ -62,6 +63,7 @@ typedef struct s_keys
 	int	right;
 	int	left;
 	int	esc;
+	int	last_mouse_pos;
 }	t_keys;
 
 typedef struct s_player
@@ -74,6 +76,7 @@ typedef struct s_player
 	double	pos_y;
 	double	move_speed;
 	double	rot_speed;
+	double	mouse_speed;
 }	t_player;
 
 typedef struct s_ray
@@ -140,9 +143,6 @@ typedef struct s_game
 	char		**map;
 	char		**texture;
 	t_texture	textures[4];
-	// t_texture	texture_so;
-	// t_texture	texture_we;
-	// t_texture	texture_ea;
 	t_keys		keys;
 	t_player	player;
 	t_ray		ray;
@@ -155,6 +155,7 @@ typedef struct s_game
 int			end_program(void *l);
 int			pulse_key(int key, t_game *game);
 int			release_key(int key, t_game *game);
+int			mouse_move(int x, int y, t_game *game);
 
 /* TEXTURE.C */
 int			get_tex_x(int tex_w, t_ray *ray);
@@ -165,6 +166,7 @@ t_texture	load_xpm_texture(char *path, t_game *game);
 
 /* PLAYER.C */
 int			handle_movements(t_game *game);
+void	rotate(t_player *player, double rotSpeed);
 
 /* MOVES.C */
 void		handle_right_movs(double speed, char **map, t_game *game);

@@ -6,7 +6,7 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2025/05/06 18:59:00 by mpenas-z         ###   ########.fr        #
+#    Updated: 2025/05/06 20:10:59 by mpenas-z         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ CFLAGS =	-Wall -Werror -Wextra -I ./include -I ./libft -I $(MLX_DIR) \
 RM = rm -f
 
 SRC_SRC =	main.c utils.c free_utils.c
+BSRC_SRC =	main_bonus.c utils.c free_utils.c
 PRS_SRC =	parser.c parser_file.c parser_texture.c parser_map.c parser_check.c
 GME_SRC =	game.c map2d.c events.c player.c \
 			raycasting.c texture.c moves.c extra.c
@@ -36,10 +37,10 @@ else
 endif
 
 SRC = $(SRC_SRC) $(PRS_SRC) $(GME_SRC)
-BONUS_SRC = $(SRC_SRC) $(PRS_SRC) $(BNS_SRC)
+BONUS_SRC = $(BSRC_SRC) $(PRS_SRC) $(BNS_SRC)
 
 INCLUDES = ./include/cub3d.h ./include/parser.h ./include/game.h \
-		   ./libft/libft.h ./include/bonus.h
+		   ./libft/libft.h ./include/game_bonus.h ./include/cub3d_bonus.h
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
 

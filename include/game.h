@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2025/04/24 19:51:41 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/06 19:50:06 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,9 +140,6 @@ typedef struct s_game
 	char		**map;
 	char		**texture;
 	t_texture	textures[4];
-	// t_texture	texture_so;
-	// t_texture	texture_we;
-	// t_texture	texture_ea;
 	t_keys		keys;
 	t_player	player;
 	t_ray		ray;

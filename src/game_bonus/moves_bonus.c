@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves.c                                            :+:      :+:    :+:   */
+/*   moves_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 19:36:01 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/04/24 19:36:39 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:11:40 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "game_bonus.h"
 
 void	handle_right_movs(double speed, char **map, t_game *game)
 {

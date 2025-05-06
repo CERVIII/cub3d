@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   player_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:16:08 by pcervill          #+#    #+#             */
-/*   Updated: 2025/04/24 19:36:45 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:15:23 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "game_bonus.h"
 
 static void	lateral_movs(t_game *game)
 {
@@ -34,7 +34,7 @@ static void	horizontal_movs(t_game *game)
 	handle_back_movs(speed, map, game);
 }
 
-static void	rotate(t_player *player, double rotSpeed)
+void	rotate(t_player *player, double rotSpeed)
 {
 	double	old_dir_x;
 	double	old_plane_x;
