@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:56:11 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/06 20:11:36 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/06 21:31:34 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	print_cube(int x, int y, int size, t_game *game)
 	i = 0;
 	while (i < size)
 	{
-		put_pixel(x + i, y, game->color, &game->image);
-		put_pixel(x, y + i, game->color, &game->image);
-		put_pixel(x + size, y + i, game->color, &game->image);
-		put_pixel(x + i, y + size, game->color, &game->image);
+		put_pixel((x + i), y , game->color, &game->image_minimap);
+		put_pixel(x, (y + i), game->color, &game->image_minimap);
+		put_pixel((x + size), (y + i), game->color, &game->image_minimap);
+		put_pixel((x + i), (y + size), game->color, &game->image_minimap);
 		i++;
 	}
 }
@@ -63,7 +63,7 @@ void	print_player(int x, int y, t_game *game)
 
 	player = WALL_SIZE / 2;
 	game->color = 0x00FF00;
-	print_cube(x - (player / 2), y - (player / 2), player, game);
+	print_cube((x - (player / 2)), (y - (player / 2)), player, game);
 }
 
 void	print_map2d(t_game *game)

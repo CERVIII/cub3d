@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:26:27 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/06 20:11:50 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/06 21:21:50 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	dda(t_game *game, t_ray *ray)
 {
 	while (1)
 	{
-		if (MINIMAP)
-			put_pixel(ray->map_x, ray->map_y, 0xFF0000, &game->image);
+		// if (MINIMAP)
+		// 	put_pixel(ray->map_x, ray->map_y, 0xFF0000, &game->image_minimap);
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
 			ray->side_dist_x += ray->delta_x;
@@ -99,11 +99,8 @@ void	raycasting(t_game *game)
 		init_ray(game, &game->ray, i);
 		dda(game, &game->ray);
 		calculate_distance(&game->ray);
-		if (!MINIMAP)
-		{
-			draw_wall(game, &game->ray, i);
-			draw_floor_sky(game, i);
-		}
+		draw_wall(game, &game->ray, i);
+		draw_floor_sky(game, i);
 		i++;
 	}
 }

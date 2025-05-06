@@ -6,7 +6,7 @@
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:48:08 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/05/06 20:15:15 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/06 21:20:20 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # define NAME "CUB3D"
 # define WALL_SIZE 20
+// # define MINIMAP_SCALE 0.4
 # define SCREEN_X 800
 # define SCREEN_Y 800
 # define PI 3.14159265359
@@ -148,6 +149,7 @@ typedef struct s_game
 	t_ray		ray;
 	t_mlx		mlx;
 	t_img		image;
+	t_img		image_minimap;
 	t_data		data;
 }	t_game;
 
@@ -166,7 +168,7 @@ t_texture	load_xpm_texture(char *path, t_game *game);
 
 /* PLAYER.C */
 int			handle_movements(t_game *game);
-void	rotate(t_player *player, double rotSpeed);
+void		rotate(t_player *player, double rotSpeed);
 
 /* MOVES.C */
 void		handle_right_movs(double speed, char **map, t_game *game);
@@ -175,7 +177,6 @@ void		handle_forward_movs(double speed, char **map, t_game *game);
 void		handle_back_movs(double speed, char **map, t_game *game);
 
 /* MAP2D.C */
-int			touch(double px, double py, t_game *game);
 void		clear_image(t_img *image);
 void		put_pixel(int x, int y, int color, t_img *image);
 void		print_cube(int x, int y, int size, t_game *game);
@@ -183,6 +184,7 @@ void		print_player(int x, int y, t_game *game);
 void		print_map2d(t_game *game);
 
 /* RAYCASTING.C */
+int			touch(double px, double py, t_game *game);
 void		draw_wall(t_game *game, t_ray *ray, int x);
 void		dda(t_game *game, t_ray *ray);
 void		raycasting(t_game *game);
@@ -200,7 +202,7 @@ void		init_ray(t_game *game, t_ray *ray, int i);
 void		calculate_distance(t_ray *ray);
 
 /* GAME.C */
-void		init_mlx(t_mlx *mlx, t_img *img);
+void		init_mlx(t_mlx *mlx, t_img *image, t_img *image_minimap);
 void		init_game(t_game *game);
 void		ft_game(t_game *game);
 
