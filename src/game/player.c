@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:16:08 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/07 15:00:11 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/07 15:14:42 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,26 @@ static void	move_player(t_game *g)
     {
         dx += g->player.dir_x * s;
         dy += g->player.dir_y * s;
+		try_move(dx, dy, g);
     }
     if (g->keys.s)
     {
         dx -= g->player.dir_x * s;
         dy -= g->player.dir_y * s;
+		try_move(dx, dy, g);
     }
     if (g->keys.d)
     {
         dx -= g->player.dir_y * s;
         dy += g->player.dir_x * s;
+		try_move(dx, dy, g);
 	}
     if (g->keys.a)
     {
         dx += g->player.dir_y * s;
         dy -= g->player.dir_x * s;
+		try_move(dx, dy, g);
     }
-	try_move(dx, dy, g);
 }
 
 static void	rotate(t_player *player, double rotSpeed)
