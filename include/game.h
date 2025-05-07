@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/07 10:41:40 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/07 15:02:48 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "../minilibx-linux/mlx.h"
 
 # define NAME "CUB3D"
-# define WALL_SIZE 20
+# define WALL_SIZE 1
 # define SCREEN_X 800
 # define SCREEN_Y 800
 # define PI 3.14159265359
