@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:45:15 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/06 20:19:36 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/07 11:11:57 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,25 @@ int	mouse_move(int x, int y, t_game *game)
 	rotate(&game->player, dx);
 	game->keys.last_mouse_pos = x;
 	return (0);
+}
+
+void	clear_image(int max_x, int max_y, int minimap, t_img *image)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < max_y)
+	{
+		x = 0;
+		while (x < max_x)
+		{
+			if (minimap)
+				put_minimap_pixel(x, y, 0xFFFFFF, image);
+			else
+				put_pixel(x, y, 0xFFFFFF, image);
+			x++;
+		}
+		y++;
+	}
 }

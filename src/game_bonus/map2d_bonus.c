@@ -6,28 +6,22 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:56:11 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/06 21:31:34 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/07 11:12:27 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_bonus.h"
 
-void	clear_image(t_img *image)
+void	put_minimap_pixel(int x, int y, int color, t_img *image)
 {
-	int	x;
-	int	y;
+	int	index;
 
-	y = 0;
-	while (y < SCREEN_Y)
-	{
-		x = 0;
-		while (x < SCREEN_X)
-		{
-			put_pixel(x, y, 0, image);
-			x++;
-		}
-		y++;
-	}
+	if (x >= MINIMAP_X || y >= MINIMAP_Y || x < 0 || y < 0)
+		return ;
+	index = y * image->len + x * image->bpp / 8;
+	image->data[index] = color & 0xFF;
+	image->data[index + 1] = (color >> 8) & 0xFF;
+	image->data[index + 2] = (color >> 16) & 0xFF;
 }
 
 void	put_pixel(int x, int y, int color, t_img *image)
@@ -45,15 +39,27 @@ void	put_pixel(int x, int y, int color, t_img *image)
 void	print_cube(int x, int y, int size, t_game *game)
 {
 	int	i;
+	int	j;
+	int	scaled_size;
+	int	sx;
+	int	sy;
 
-	i = 0;
-	while (i < size)
+	scaled_size = size * game->minimap_scale;
+	sx = x * game->minimap_scale;
+	sy = y * game->minimap_scale;
+	j = 0;
+	while (j < scaled_size)
 	{
-		put_pixel((x + i), y , game->color, &game->image_minimap);
-		put_pixel(x, (y + i), game->color, &game->image_minimap);
-		put_pixel((x + size), (y + i), game->color, &game->image_minimap);
-		put_pixel((x + i), (y + size), game->color, &game->image_minimap);
-		i++;
+		i = 0;
+		while (i < scaled_size)
+		{
+			if (sx + i >= 0 && sx + i < MINIMAP_X
+				&& sy + j >= 0 && sy + j < MINIMAP_Y)
+				put_minimap_pixel(sx + i, sy + j,
+					game->color, &game->image_minimap);
+			i++;
+		}
+		j++;
 	}
 }
 
@@ -61,17 +67,23 @@ void	print_player(int x, int y, t_game *game)
 {
 	int	player;
 
-	player = WALL_SIZE / 2;
-	game->color = 0x00FF00;
+	game->minimap_scale = (double)(MINIMAP_X) / (game->width * WALL_SIZE);
+	if ((double)(MINIMAP_Y) / (game->heigh * WALL_SIZE) < game->minimap_scale)
+		game->minimap_scale = (double)(MINIMAP_Y) / (game->heigh * WALL_SIZE);
+	player = WALL_SIZE * 0.8;
+	game->color = 0xFF0808;
 	print_cube((x - (player / 2)), (y - (player / 2)), player, game);
 }
 
 void	print_map2d(t_game *game)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 
-	game->color = 0x00FFFF;
+	game->minimap_scale = (double)(MINIMAP_X) / (game->width * WALL_SIZE);
+	if ((double)(MINIMAP_Y) / (game->heigh * WALL_SIZE) < game->minimap_scale)
+		game->minimap_scale = (double)(MINIMAP_Y) / (game->heigh * WALL_SIZE);
+	game->color = 0xFFD208;
 	y = 0;
 	while (game->map[y])
 	{

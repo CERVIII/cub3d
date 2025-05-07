@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/06 21:22:17 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/07 11:13:19 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	init_game(t_game *game)
 
 int	handle_loop(t_game *game)
 {
-	clear_image(&game->image);
+	clear_image(SCREEN_X, SCREEN_Y, 0, &game->image);
+	clear_image(MINIMAP_X, MINIMAP_Y, 1, &game->image_minimap);
 	handle_movements(game);
 	if (MINIMAP)
 	{
@@ -66,7 +67,8 @@ int	handle_loop(t_game *game)
 	raycasting(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win,
 		game->image.img, 0, 0);
-	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win, game->image_minimap.img, 10, 10);
+	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win,
+		game->image_minimap.img, 10, 10);
 	return (0);
 }
 
@@ -75,7 +77,7 @@ void	init_mlx(t_mlx *mlx, t_img *image, t_img *image_minimap)
 	mlx->mlx = mlx_init();
 	mlx->mlx_win = mlx_new_window(mlx->mlx, SCREEN_X, SCREEN_Y, NAME);
 	image->img = mlx_new_image(mlx->mlx, SCREEN_X, SCREEN_Y);
-	image_minimap->img = mlx_new_image(mlx->mlx, 100, 100);
+	image_minimap->img = mlx_new_image(mlx->mlx, MINIMAP_X, MINIMAP_Y);
 	image->data = mlx_get_data_addr(image->img,
 			&image->bpp, &image->len, &image->endian);
 	image_minimap->data = mlx_get_data_addr(image_minimap->img,
