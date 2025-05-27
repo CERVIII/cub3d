@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:56:11 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/07 11:12:27 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:45:24 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,11 @@ void	print_cube(int x, int y, int size, t_game *game)
 
 void	print_player(int x, int y, t_game *game)
 {
-	int	player;
-
-	game->minimap_scale = (double)(MINIMAP_X) / (game->width * WALL_SIZE);
-	if ((double)(MINIMAP_Y) / (game->heigh * WALL_SIZE) < game->minimap_scale)
-		game->minimap_scale = (double)(MINIMAP_Y) / (game->heigh * WALL_SIZE);
-	player = WALL_SIZE * 0.8;
+	game->minimap_scale = (double)(MINIMAP_X) / game->width;
+	if ((double)(MINIMAP_Y) / game->heigh < game->minimap_scale)
+		game->minimap_scale = (double)(MINIMAP_Y) / game->heigh;
 	game->color = 0xFF0808;
-	print_cube((x - (player / 2)), (y - (player / 2)), player, game);
+	print_cube(x, y, 1, game);
 }
 
 void	print_map2d(t_game *game)
@@ -80,9 +77,9 @@ void	print_map2d(t_game *game)
 	int		x;
 	int		y;
 
-	game->minimap_scale = (double)(MINIMAP_X) / (game->width * WALL_SIZE);
-	if ((double)(MINIMAP_Y) / (game->heigh * WALL_SIZE) < game->minimap_scale)
-		game->minimap_scale = (double)(MINIMAP_Y) / (game->heigh * WALL_SIZE);
+	game->minimap_scale = (double)(MINIMAP_X) / game->width;
+	if ((double)(MINIMAP_Y) / game->heigh < game->minimap_scale)
+		game->minimap_scale = (double)(MINIMAP_Y) / game->heigh;
 	game->color = 0xFFD208;
 	y = 0;
 	while (game->map[y])
@@ -91,7 +88,7 @@ void	print_map2d(t_game *game)
 		while (game->map[y][x])
 		{
 			if (game->map[y][x] == '1')
-				print_cube(x * WALL_SIZE, y * WALL_SIZE, WALL_SIZE, game);
+				print_cube(x, y, 1, game);
 			x++;
 		}
 		y++;

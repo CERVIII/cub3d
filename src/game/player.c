@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:16:08 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/07 15:14:42 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:50:43 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	try_move(double dx, double dy, t_game *g)
 static void	move_player(t_game *g)
 {
     double dx = 0.0, dy = 0.0;
-    double s  = g->player.move_speed;
+    double s = g->player.move_speed;
 
     if (g->keys.w)
     {

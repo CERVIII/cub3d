@@ -6,7 +6,7 @@
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:48:08 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/05/07 11:12:14 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:44:18 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include "../minilibx-linux/mlx.h"
 
 # define NAME "CUB3D"
-# define WALL_SIZE 20
 # define MINIMAP_X 200
 # define MINIMAP_Y 200
 # define SCREEN_X 800
@@ -172,12 +171,6 @@ t_texture	load_xpm_texture(char *path, t_game *game);
 /* PLAYER.C */
 int			handle_movements(t_game *game);
 void		rotate(t_player *player, double rotSpeed);
-
-/* MOVES.C */
-void		handle_right_movs(double speed, char **map, t_game *game);
-void		handle_left_movs(double speed, char **map, t_game *game);
-void		handle_forward_movs(double speed, char **map, t_game *game);
-void		handle_back_movs(double speed, char **map, t_game *game);
 
 /* MAP2D.C */
 void		put_pixel(int x, int y, int color, t_img *image);

@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/07 15:18:26 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:44:14 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include "../minilibx-linux/mlx.h"
 
 # define NAME "CUB3D"
-# define WALL_SIZE 1
 # define SCREEN_X 800
 # define SCREEN_Y 800
 # define PI 3.14159265359
@@ -162,12 +161,6 @@ t_texture	load_xpm_texture(char *path, t_game *game);
 
 /* PLAYER.C */
 int			handle_movements(t_game *game);
-
-/* MOVES.C */
-void		handle_right_movs(double speed, char **map, t_game *game);
-void		handle_left_movs(double speed, char **map, t_game *game);
-void		handle_forward_movs(double speed, char **map, t_game *game);
-void		handle_back_movs(double speed, char **map, t_game *game);
 
 /* MAP2D.C */
 int			touch(double px, double py, t_game *game);

@@ -6,32 +6,68 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:16:08 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/06 20:15:23 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:44:24 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_bonus.h"
 
-static void	lateral_movs(t_game *game)
+static void	try_move(double dx, double dy, t_game *g)
 {
-	char	**map;
-	double	speed;
+    double	new_x;
+    double	new_y;
 
-	speed = game->player.move_speed;
-	map = game->map;
-	handle_left_movs(speed, map, game);
-	handle_right_movs(speed, map, game);
+	new_x = g->data.player_x + dx;
+	new_y = g->data.player_y + dy;
+	if ((int)g->data.player_x == (int)new_x
+		&& (int)g->data.player_y == (int)new_y)
+	{
+		g->data.player_x = new_x;
+		g->data.player_xpx = new_x;
+		g->data.player_y = new_y;
+		g->data.player_ypx = new_y;
+	}
+	else
+	{
+		if (g->map[(int)new_y][(int)new_x] != '1')
+		{
+			g->data.player_x = new_x;
+			g->data.player_xpx = new_x;
+			g->data.player_y = new_y;
+			g->data.player_ypx = new_y;
+		}
+	}
 }
 
-static void	horizontal_movs(t_game *game)
+static void	move_player(t_game *g)
 {
-	char	**map;
-	double	speed;
+    double dx = 0.0, dy = 0.0;
+    double s = g->player.move_speed;
 
-	speed = game->player.move_speed;
-	map = game->map;
-	handle_forward_movs(speed, map, game);
-	handle_back_movs(speed, map, game);
+    if (g->keys.w)
+    {
+        dx += g->player.dir_x * s;
+        dy += g->player.dir_y * s;
+		try_move(dx, dy, g);
+    }
+    if (g->keys.s)
+    {
+        dx -= g->player.dir_x * s;
+        dy -= g->player.dir_y * s;
+		try_move(dx, dy, g);
+    }
+    if (g->keys.d)
+    {
+        dx -= g->player.dir_y * s;
+        dy += g->player.dir_x * s;
+		try_move(dx, dy, g);
+	}
+    if (g->keys.a)
+    {
+        dx += g->player.dir_y * s;
+        dy -= g->player.dir_x * s;
+		try_move(dx, dy, g);
+    }
 }
 
 void	rotate(t_player *player, double rotSpeed)
@@ -61,8 +97,7 @@ static void	rotation_player(t_game *game)
 
 int	handle_movements(t_game *game)
 {
-	horizontal_movs(game);
-	lateral_movs(game);
+	move_player(game);
 	rotation_player(game);
 	return (0);
 }

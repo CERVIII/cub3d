@@ -6,7 +6,7 @@
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 19:42:12 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/04/24 19:42:53 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:38:44 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	check_player(char **map, int x, int y, t_data *data)
 	if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'S'
 		|| map[y][x] == 'E' || map[y][x] == 'W')
 	{
-		data->player_xpx = (x * WALL_SIZE) + (WALL_SIZE / 2);
+		data->player_xpx = x + 0.5;
 		data->player_x = x + 0.5;
-		data->player_ypx = (y * WALL_SIZE) + (WALL_SIZE / 2);
+		data->player_ypx = y + 0.5;
 		data->player_y = y + 0.5;
 		return (1);
 	}

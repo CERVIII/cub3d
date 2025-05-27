@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:26:27 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/07 11:08:40 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:40:52 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	touch(double px, double py, t_game *game)
 	int	x;
 	int	y;
 
-	x = (int)px / WALL_SIZE;
-	y = (int)py / WALL_SIZE;
+	x = (int)px;
+	y = (int)py;
 	if (game->map[y][x] == '1' || game->map[y][x] == ' ')
 		return (1);
 	return (0);
