@@ -6,7 +6,7 @@
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:18:59 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/05/07 11:06:06 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/31 20:18:35 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ int	get_tex_y(int screen_y, int tex_h, t_ray *ray)
 	int		draw_start;
 	double	tex_pos;
 	double	step;
+	double	fixed_dist;
 
-	draw_start = -((int)(SCREEN_Y / ray->dist)) / 2 + SCREEN_Y / 2;
-	step = (double)tex_h / (double)((int)(SCREEN_Y / ray->dist));
+	fixed_dist = ray->dist * cos(ray->ray_angle - ray->player_angle);
+	draw_start = -((int)(SCREEN_Y / fixed_dist)) / 2 + SCREEN_Y / 2;
+	step = (double)tex_h / (double)((int)(SCREEN_Y / fixed_dist));
 	tex_pos = (screen_y - draw_start) * step;
 	tex_y = ((int)tex_pos) & (tex_h - 1);
 	return (tex_y);

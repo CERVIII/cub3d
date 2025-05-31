@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:26:27 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/27 13:40:52 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/31 20:19:31 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@ int	touch(double px, double py, t_game *game)
 
 void	draw_floor_sky(t_game *game, int x)
 {
-	int	line_height;
-	int	start;
-	int	end;
+	int		line_height;
+	int		start;
+	int		end;
+	double	fixed_dist;
 
+	fixed_dist = game->ray.dist \
+		* cos(game->ray.ray_angle - game->ray.player_angle);
 	game->color = rgb_to_hex(game->data.c[0], game->data.c[1], game->data.c[2]);
-	line_height = (int)(SCREEN_Y / game->ray.dist);
+	line_height = (int)(SCREEN_Y / fixed_dist);
 	start = -1;
 	end = -line_height / 2 + SCREEN_Y / 2;
 	if (start < 0)
@@ -51,11 +54,13 @@ void	draw_floor_sky(t_game *game, int x)
 
 void	draw_wall(t_game *game, t_ray *ray, int x)
 {
-	int	line_height;
-	int	draw_start;
-	int	draw_end;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	double	fixed_dist;
 
-	line_height = (int)(SCREEN_Y / ray->dist);
+	fixed_dist = ray->dist * cos(ray->ray_angle - ray->player_angle);
+	line_height = (int)(SCREEN_Y / fixed_dist);
 	draw_start = (-line_height / 2 + SCREEN_Y / 2) - 1;
 	draw_end = line_height / 2 + SCREEN_Y / 2;
 	if (draw_start < 0)
