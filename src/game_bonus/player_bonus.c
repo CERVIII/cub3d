@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:16:08 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/27 13:44:24 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/31 18:30:06 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,30 @@ static void	try_move(double dx, double dy, t_game *g)
 
 static void	move_player(t_game *g)
 {
-    double dx = 0.0, dy = 0.0;
-    double s = g->player.move_speed;
+    double	dx;
+	double	dy;
+    double	s;
 
+	s = g->player.move_speed;
+	dx = 0.0;
+	dy = 0.0;
     if (g->keys.w)
-    {
         dx += g->player.dir_x * s;
+    if (g->keys.w)
         dy += g->player.dir_y * s;
-		try_move(dx, dy, g);
-    }
     if (g->keys.s)
-    {
         dx -= g->player.dir_x * s;
+    if (g->keys.s)
         dy -= g->player.dir_y * s;
-		try_move(dx, dy, g);
-    }
     if (g->keys.d)
-    {
         dx -= g->player.dir_y * s;
-        dy += g->player.dir_x * s;
-		try_move(dx, dy, g);
-	}
+    if (g->keys.d)
+		dy += g->player.dir_x * s;
     if (g->keys.a)
-    {
-        dx += g->player.dir_y * s;
-        dy -= g->player.dir_x * s;
-		try_move(dx, dy, g);
-    }
+		dx += g->player.dir_y * s;
+    if (g->keys.a)
+		dy -= g->player.dir_x * s;
+	try_move(dx, dy, g);
 }
 
 void	rotate(t_player *player, double rotSpeed)

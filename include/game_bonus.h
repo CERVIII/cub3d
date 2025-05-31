@@ -6,7 +6,7 @@
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:48:08 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/05/27 13:44:18 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/31 18:51:04 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_keys
 	int	left;
 	int	esc;
 	int	last_mouse_pos;
+	int	mouse_inside;
 }	t_keys;
 
 typedef struct s_player

@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/07 11:13:19 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:00:20 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_key(t_keys *key)
 	key->right = 0;
 	key->esc = 0;
 	key->last_mouse_pos = -1;
+	key->mouse_inside = 0;
 }
 
 void	init_game(t_game *game)
@@ -33,7 +34,7 @@ void	init_game(t_game *game)
 	game->map = game->data.map;
 	game->heigh = game->data.heigh;
 	game->width = game->data.width;
-	game->player.move_speed = 0.025;
+	game->player.move_speed = 0.05;
 	game->player.rot_speed = 0.05;
 	y = 0;
 	while (game->map[y])
