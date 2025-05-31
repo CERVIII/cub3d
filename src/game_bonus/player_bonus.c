@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:16:08 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/31 18:30:06 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:13:13 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	try_move(double dx, double dy, t_game *g)
 {
-    double	new_x;
-    double	new_y;
+	double	new_x;
+	double	new_y;
 
 	new_x = g->data.player_x + dx;
 	new_y = g->data.player_y + dy;
@@ -41,28 +41,28 @@ static void	try_move(double dx, double dy, t_game *g)
 
 static void	move_player(t_game *g)
 {
-    double	dx;
+	double	dx;
 	double	dy;
-    double	s;
+	double	s;
 
 	s = g->player.move_speed;
 	dx = 0.0;
 	dy = 0.0;
-    if (g->keys.w)
-        dx += g->player.dir_x * s;
-    if (g->keys.w)
-        dy += g->player.dir_y * s;
-    if (g->keys.s)
-        dx -= g->player.dir_x * s;
-    if (g->keys.s)
-        dy -= g->player.dir_y * s;
-    if (g->keys.d)
-        dx -= g->player.dir_y * s;
-    if (g->keys.d)
+	if (g->keys.w)
+		dx += g->player.dir_x * s;
+	if (g->keys.w)
+		dy += g->player.dir_y * s;
+	if (g->keys.s)
+		dx -= g->player.dir_x * s;
+	if (g->keys.s)
+		dy -= g->player.dir_y * s;
+	if (g->keys.d)
+		dx -= g->player.dir_y * s;
+	if (g->keys.d)
 		dy += g->player.dir_x * s;
-    if (g->keys.a)
+	if (g->keys.a)
 		dx += g->player.dir_y * s;
-    if (g->keys.a)
+	if (g->keys.a)
 		dy -= g->player.dir_x * s;
 	try_move(dx, dy, g);
 }
