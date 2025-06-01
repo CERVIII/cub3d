@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:16:08 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/31 19:11:37 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/01 16:29:29 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void	try_move(double dx, double dy, t_game *g)
 	}
 	else
 	{
-		if (g->map[(int)new_y][(int)new_x] != '1')
+		if (g->map[(int)new_y][(int)new_x] != '1'
+			&& g->map[(int)new_y][(int)new_x] != ' ')
 		{
 			g->data.player_x = new_x;
 			g->data.player_xpx = new_x;
