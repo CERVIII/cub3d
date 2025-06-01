@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/31 19:00:20 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 00:12:20 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	handle_loop(t_game *game)
 		game->image.img, 0, 0);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win,
 		game->image_minimap.img, 10, 10);
+	torch_loop(game);
 	return (0);
 }
 
@@ -93,6 +94,7 @@ void	ft_game(t_game *game)
 	game->player.mouse_speed = 0.005;
 	init_mlx(&game->mlx, &game->image, &game->image_minimap);
 	load_wall_textures(game);
+	init_torch(game);
 	mlx_hook(game->mlx.mlx_win, DESTROY, 0, &end_program, game);
 	mlx_hook(game->mlx.mlx_win, MOUSE, (1L << 6), &mouse_move, game);
 	mlx_hook(game->mlx.mlx_win, KEY_PRESS, (1L << 0), &pulse_key, game);

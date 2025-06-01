@@ -6,7 +6,7 @@
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:48:08 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/05/31 18:51:04 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 00:06:32 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define MINIMAP_Y 200
 # define SCREEN_X 800
 # define SCREEN_Y 800
+# define TORCH_FRAMES_N 9
 # define PI 3.14159265359
 
 # define KEY_PRESS 2
@@ -137,21 +138,37 @@ typedef struct s_texture
 	int		h;
 }	t_texture;
 
+typedef struct s_torch
+{
+	int			frame_count;
+	int			current;
+	int			animation_speed;
+	int			animation_count;
+	int			width;
+	int			height;
+	int			img_w;
+	int			img_h;
+	t_texture	frames[TORCH_FRAMES_N];
+}	t_torch;
+
 typedef struct s_game
 {
 	int			heigh;
 	int			width;
 	int			color;
+	int			torch_on;
 	double		minimap_scale;
 	char		**map;
 	char		**texture;
 	t_texture	textures[4];
+	t_torch		torch;
 	t_keys		keys;
 	t_player	player;
 	t_ray		ray;
 	t_mlx		mlx;
 	t_img		image;
 	t_img		image_minimap;
+	t_img		image_torch;
 	t_data		data;
 }	t_game;
 
@@ -197,6 +214,15 @@ void		load_wall_textures(t_game *game);
 void		init_nextraystep(t_ray *ray);
 void		init_ray(t_game *game, t_ray *ray, int i);
 void		calculate_distance(t_ray *ray);
+
+/* TORCH.C */
+int		check_torch_file(char *path);
+int		check_torch_files(void);
+void	load_torch_textures(t_game *game);
+void	init_torch(t_game *game);
+void	torch_loop(t_game *game);
+void	put_torch_pixel(int x, int y, int color, t_game *game);
+void	paint_torch_frame(t_game *game);
 
 /* GAME.C */
 void		init_mlx(t_mlx *mlx, t_img *image, t_img *image_minimap);

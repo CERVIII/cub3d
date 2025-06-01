@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/06 20:39:31 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/01 22:36:46 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../minilibx_opengl/minilibx_opengl_20191021/mlx.h"
 # include "../minilibx-linux/mlx.h"
 # include "libft.h"
-# include "parser.h"
+# include "parser_bonus.h"
 # include "game_bonus.h"
 # include <unistd.h>
 # include <sys/types.h>
