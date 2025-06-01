@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.h                                             :+:      :+:    :+:   */
+/*   game_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 10:50:42 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/27 13:44:14 by mpenas-z         ###   ########.fr       */
+/*   Created: 2025/05/06 16:48:08 by mpenas-z          #+#    #+#             */
+/*   Updated: 2025/05/31 18:51:04 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_H
-# define GAME_H
+#ifndef GAME_BONUS_H
+# define GAME_BONUS_H
 
-# include "cub3d.h"
+# include "cub3d_bonus.h"
 # include <string.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -22,6 +22,8 @@
 # include "../minilibx-linux/mlx.h"
 
 # define NAME "CUB3D"
+# define MINIMAP_X 200
+# define MINIMAP_Y 200
 # define SCREEN_X 800
 # define SCREEN_Y 800
 # define PI 3.14159265359
@@ -51,6 +53,7 @@
 # define DW 65364
 # define ESC_L 65307
 # define DESTROY 17
+# define MOUSE 6
 
 typedef struct s_keys
 {
@@ -61,6 +64,8 @@ typedef struct s_keys
 	int	right;
 	int	left;
 	int	esc;
+	int	last_mouse_pos;
+	int	mouse_inside;
 }	t_keys;
 
 typedef struct s_player
@@ -73,6 +78,7 @@ typedef struct s_player
 	double	pos_y;
 	double	move_speed;
 	double	rot_speed;
+	double	mouse_speed;
 }	t_player;
 
 typedef struct s_ray
@@ -136,6 +142,7 @@ typedef struct s_game
 	int			heigh;
 	int			width;
 	int			color;
+	double		minimap_scale;
 	char		**map;
 	char		**texture;
 	t_texture	textures[4];
@@ -144,6 +151,7 @@ typedef struct s_game
 	t_ray		ray;
 	t_mlx		mlx;
 	t_img		image;
+	t_img		image_minimap;
 	t_data		data;
 }	t_game;
 
@@ -151,6 +159,8 @@ typedef struct s_game
 int			end_program(void *l);
 int			pulse_key(int key, t_game *game);
 int			release_key(int key, t_game *game);
+int			mouse_move(int x, int y, t_game *game);
+void		clear_image(int max_x, int max_y, int minimap, t_img *image);
 
 /* TEXTURE.C */
 int			get_tex_x(int tex_w, t_ray *ray);
@@ -161,16 +171,17 @@ t_texture	load_xpm_texture(char *path, t_game *game);
 
 /* PLAYER.C */
 int			handle_movements(t_game *game);
+void		rotate(t_player *player, double rotSpeed);
 
 /* MAP2D.C */
-int			touch(double px, double py, t_game *game);
-void		clear_image(t_img *image);
 void		put_pixel(int x, int y, int color, t_img *image);
+void		put_minimap_pixel(int x, int y, int color, t_img *image);
 void		print_cube(int x, int y, int size, t_game *game);
 void		print_player(int x, int y, t_game *game);
 void		print_map2d(t_game *game);
 
 /* RAYCASTING.C */
+int			touch(double px, double py, t_game *game);
 void		draw_wall(t_game *game, t_ray *ray, int x);
 void		dda(t_game *game, t_ray *ray);
 void		raycasting(t_game *game);
@@ -188,7 +199,7 @@ void		init_ray(t_game *game, t_ray *ray, int i);
 void		calculate_distance(t_ray *ray);
 
 /* GAME.C */
-void		init_mlx(t_mlx *mlx, t_img *img);
+void		init_mlx(t_mlx *mlx, t_img *image, t_img *image_minimap);
 void		init_game(t_game *game);
 void		ft_game(t_game *game);
 

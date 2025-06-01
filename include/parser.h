@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:33 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/24 15:00:09 by pcervill         ###   ########.fr       */
+/*   Updated: 2025/04/24 19:43:37 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,23 @@ typedef struct s_data
 /* PARSER.C */
 void	parser(int argc, char **argv, t_data *data);
 
-/* PARSER_FILE */
+/* PARSER_FILE.C */
 void	check_arg(int argc, char **argv);
 void	check_file(char *argv, t_data *data);
 void	verify_blank_line(char *line);
 void	read_write_file(t_data *data);
 void	parser_file(int argc, char **argv, t_data *data);
 
-/* PARSER_TEXTURE */
+/* PARSER_TEXTURE.C */
 char	*save_texture(char *texture, t_data *data);
 int		*save_color(char *texture, t_data *data);
 void	parser_texture(t_data *data);
 
-
-/* PARSER_MAP */
+/* PARSER_MAP.C */
 void	copy_map(t_data *data, char **map);
 void	init_map(t_data *data, char **map);
+
+/* PARSER_CHECK.C */
 void	check_map(char **map, t_data *data);
 void	check_wall(char **map, t_data *data);
 void	parser_map(t_data *data);

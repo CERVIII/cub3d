@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   player_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:16:08 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/01 16:29:29 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/01 16:26:00 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "game_bonus.h"
 
 static void	try_move(double dx, double dy, t_game *g)
 {
@@ -68,7 +68,7 @@ static void	move_player(t_game *g)
 	try_move(dx, dy, g);
 }
 
-static void	rotate(t_player *player, double rotSpeed)
+void	rotate(t_player *player, double rotSpeed)
 {
 	double	old_dir_x;
 	double	old_plane_x;
