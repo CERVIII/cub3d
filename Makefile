@@ -6,7 +6,7 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2025/06/02 12:58:41 by mpenas-z         ###   ########.fr        #
+#    Updated: 2025/06/02 21:36:24 by mpenas-z         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,13 @@ RM = rm -f
 SRC_SRC =	main.c utils.c free_utils.c
 BSRC_SRC =	main_bonus.c utils.c free_utils.c
 PRS_SRC =	parser.c parser_file.c parser_texture.c parser_map.c parser_check.c
+BPRS_SRC =	parser_bonus.c parser_file_bonus.c parser_texture_bonus.c \
+			parser_map_bonus.c parser_check_bonus.c
 GME_SRC =	game.c map2d.c events.c player.c \
 			raycasting.c texture.c extra.c
-BNS_SRC =	game_bonus.c map2d_bonus.c events_bonus.c player_bonus.c \
-			raycasting_bonus.c texture_bonus.c extra_bonus.c
+BGME_SRC =	game_bonus.c map2d_bonus.c events_bonus.c player_bonus.c \
+			raycasting_bonus.c texture_bonus.c extra_bonus.c \
+			torch_bonus.c torch_extra_bonus.c
 
 ifeq ($(UNAME),Darwin)
 	MLX_DIR = ./minilibx_opengl/minilibx_opengl_20191021/
@@ -37,17 +40,20 @@ else
 endif
 
 SRC = $(SRC_SRC) $(PRS_SRC) $(GME_SRC)
-BONUS_SRC = $(BSRC_SRC) $(PRS_SRC) $(BNS_SRC)
+BONUS_SRC = $(BSRC_SRC) $(BPRS_SRC) $(BGME_SRC)
 
 INCLUDES = ./include/cub3d.h ./include/parser.h ./include/game.h \
-		   ./libft/libft.h ./include/game_bonus.h ./include/cub3d_bonus.h
+		   ./libft/libft.h ./include/game_bonus.h \
+		   ./include/cub3d_bonus.h ./include/parser_bonus.h
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
 SRC_DIR = ./src/
+BSRC_DIR = ./src/
 PRS_DIR = $(SRC_DIR)parser/
+BPRS_DIR = $(SRC_DIR)parser_bonus/
 GME_DIR = $(SRC_DIR)game/
-BNS_DIR = $(SRC_DIR)game_bonus/
+BGME_DIR = $(SRC_DIR)game_bonus/
 OBJ_DIR = ./obj/
 
 OBJ_FILES = $(SRC:.c=.o)
@@ -66,8 +72,16 @@ $(OBJ_DIR):
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
+# Objects for Bonus Main
+$(OBJ_DIR)%.o: $(BSRC_DIR)%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 # Objects for Parser
 $(OBJ_DIR)%.o: $(PRS_DIR)%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# Objects for Bonus Parser
+$(OBJ_DIR)%.o: $(BPRS_DIR)%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Objects for Game
@@ -75,7 +89,7 @@ $(OBJ_DIR)%.o: $(GME_DIR)%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Objects for BONUS
-$(OBJ_DIR)%.o: $(BNS_DIR)%.c
+$(OBJ_DIR)%.o: $(BGME_DIR)%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(MLX_PATH):

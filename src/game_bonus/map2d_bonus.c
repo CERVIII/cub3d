@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:56:11 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/02 12:38:03 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 21:36:53 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	put_pixel(int x, int y, int color, t_img *image)
 	image->data[index] = color & 0xFF;
 	image->data[index + 1] = (color >> 8) & 0xFF;
 	image->data[index + 2] = (color >> 16) & 0xFF;
+	image->data[index + 3] = (color >> 24) & 0xFF;
 }
 
 void	print_cube(int x, int y, int size, t_game *game)
@@ -80,7 +81,7 @@ void	print_map2d(t_game *game)
 	game->minimap_scale = (double)(MINIMAP_X) / game->width;
 	if ((double)(MINIMAP_Y) / game->heigh < game->minimap_scale)
 		game->minimap_scale = (double)(MINIMAP_Y) / game->heigh;
-	game->color = 0xFFD208;
+	game->color = 0x000000;
 	y = 0;
 	while (game->map[y])
 	{

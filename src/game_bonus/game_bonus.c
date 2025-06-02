@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/31 19:00:20 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 20:52:31 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,17 @@ int	handle_loop(t_game *game)
 {
 	clear_image(SCREEN_X, SCREEN_Y, 0, &game->image);
 	clear_image(MINIMAP_X, MINIMAP_Y, 1, &game->image_minimap);
+	ft_memset(game->image.data, 0, SCREEN_X * SCREEN_Y * (game->image.bpp / 8));
 	handle_movements(game);
 	if (MINIMAP)
 	{
+		ft_memset(game->image_minimap.data, 0xFFFFFF,
+			game->image_minimap.len * MINIMAP_Y);
 		print_map2d(game);
 		print_player(game->data.player_xpx, game->data.player_ypx, game);
 	}
 	raycasting(game);
+	torch_loop(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win,
 		game->image.img, 0, 0);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win,
@@ -93,6 +97,7 @@ void	ft_game(t_game *game)
 	game->player.mouse_speed = 0.005;
 	init_mlx(&game->mlx, &game->image, &game->image_minimap);
 	load_wall_textures(game);
+	init_torch(game);
 	mlx_hook(game->mlx.mlx_win, DESTROY, 0, &end_program, game);
 	mlx_hook(game->mlx.mlx_win, MOUSE, (1L << 6), &mouse_move, game);
 	mlx_hook(game->mlx.mlx_win, KEY_PRESS, (1L << 0), &pulse_key, game);
