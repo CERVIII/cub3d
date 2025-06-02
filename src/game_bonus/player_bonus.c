@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:16:08 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/01 16:26:00 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 21:03:29 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,15 @@ static void	try_move(double dx, double dy, t_game *g)
 
 	new_x = g->data.player_x + dx;
 	new_y = g->data.player_y + dy;
-	if ((int)g->data.player_x == (int)new_x
-		&& (int)g->data.player_y == (int)new_y)
+	if (g->map[(int)new_y][(int)new_x] != '1'
+		&& g->map[(int)new_y][(int)new_x] != ' '
+		&& g->map[(int)new_y][(int)g->data.player_x] != '1'
+		&& g->map[(int)g->data.player_y][(int)new_x] != '1')
 	{
 		g->data.player_x = new_x;
 		g->data.player_xpx = new_x;
 		g->data.player_y = new_y;
 		g->data.player_ypx = new_y;
-	}
-	else
-	{
-		if (g->map[(int)new_y][(int)new_x] != '1'
-			&& g->map[(int)new_y][(int)new_x] != ' ')
-		{
-			g->data.player_x = new_x;
-			g->data.player_xpx = new_x;
-			g->data.player_y = new_y;
-			g->data.player_ypx = new_y;
-		}
 	}
 }
 
