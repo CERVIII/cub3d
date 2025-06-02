@@ -6,7 +6,7 @@
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:48:08 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/06/02 00:06:32 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:19:18 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ typedef struct s_texture
 
 typedef struct s_torch
 {
+	t_texture	frames[TORCH_FRAMES_N];
 	int			frame_count;
 	int			current;
 	int			animation_speed;
@@ -148,7 +149,7 @@ typedef struct s_torch
 	int			height;
 	int			img_w;
 	int			img_h;
-	t_texture	frames[TORCH_FRAMES_N];
+	double		scale;
 }	t_torch;
 
 typedef struct s_game
@@ -168,7 +169,6 @@ typedef struct s_game
 	t_mlx		mlx;
 	t_img		image;
 	t_img		image_minimap;
-	t_img		image_torch;
 	t_data		data;
 }	t_game;
 

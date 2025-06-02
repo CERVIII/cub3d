@@ -17,7 +17,7 @@ static const char *torch_frame_3[] = {
 "= c white",
 "- c white",
 "; c white",
-": c None",
+": c #000000",
 /* pixels */
 "::::::::::::::::::::::::::::::::",
 "::::::::::::::::::::::::::::::::",
