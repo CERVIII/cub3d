@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:42:23 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/02 14:38:25 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:44:29 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ char	*save_texture(char *texture, t_data *data)
 	fd = open(result, O_RDONLY);
 	if (fd == -1)
 		ft_error(ERR_READ, data, result);
-	close (fd);
 	aux = get_next_line(fd);
 	if (!aux)
 		ft_error(ERR_EMPTY, data, result);
