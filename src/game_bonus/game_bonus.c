@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/02 16:54:41 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 20:52:31 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ int	handle_loop(t_game *game)
 	clear_image(SCREEN_X, SCREEN_Y, 0, &game->image);
 	clear_image(MINIMAP_X, MINIMAP_Y, 1, &game->image_minimap);
 	ft_memset(game->image.data, 0, SCREEN_X * SCREEN_Y * (game->image.bpp / 8));
-	/*ft_memset(game->image.data, 0,*/
-	/*		  game->image.len * SCREEN_Y);*/
 	handle_movements(game);
 	if (MINIMAP)
 	{

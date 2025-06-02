@@ -6,7 +6,7 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2025/06/02 14:48:15 by mpenas-z         ###   ########.fr        #
+#    Updated: 2025/06/02 20:48:22 by mpenas-z         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ BPRS_SRC =	parser_bonus.c parser_file_bonus.c parser_texture_bonus.c \
 GME_SRC =	game.c map2d.c events.c player.c \
 			raycasting.c texture.c extra.c
 BGME_SRC =	game_bonus.c map2d_bonus.c events_bonus.c player_bonus.c \
-			raycasting_bonus.c texture_bonus.c extra_bonus.c torch_bonus.c
+			raycasting_bonus.c texture_bonus.c extra_bonus.c \
+			torch_bonus.c torch_extra_bonus.c
 
 ifeq ($(UNAME),Darwin)
 	MLX_DIR = ./minilibx_opengl/minilibx_opengl_20191021/

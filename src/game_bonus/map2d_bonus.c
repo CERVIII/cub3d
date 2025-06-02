@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:56:11 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/02 16:58:23 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 20:51:41 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	put_pixel(int x, int y, int color, t_img *image)
 	if (x >= SCREEN_X || y >= SCREEN_Y || x < 0 || y < 0)
 		return ;
 	index = y * image->len + x * image->bpp / 8;
-	/*((int *)image->data)[y * image->len + x * (image->bpp / 8)] = color;*/
 	image->data[index] = color & 0xFF;
 	image->data[index + 1] = (color >> 8) & 0xFF;
 	image->data[index + 2] = (color >> 16) & 0xFF;
