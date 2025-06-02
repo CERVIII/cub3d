@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:10:04 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/15 12:21:25 by pcervill         ###   ########.fr       */
+/*   Updated: 2025/06/02 12:57:57 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ void	check_arg(int argc, char **argv)
 
 void	check_file(char *argv, t_data *data)
 {
-	if (access(argv, F_OK) == -1)
-		ft_error(ERR_FD, NULL, argv);
-	if (access(argv, R_OK) == -1)
-		ft_error(ERR_READ, NULL, argv);
 	data->fd = open(argv, O_RDONLY);
 	if (data->fd == -1)
 		ft_error(ERR_OPEN, NULL, argv);
