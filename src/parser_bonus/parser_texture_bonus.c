@@ -6,11 +6,11 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:42:23 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/02 14:44:29 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 11:13:02 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 char	*save_texture(char *texture, t_data *data)
 {
@@ -89,4 +89,16 @@ void	parser_texture(t_data *data)
 			ft_error(ERR_TEXT, data, NULL);
 		i++;
 	}
+	if (check_texture_file("./textures/door_texture.xpm") != 0)
+		ft_error("Door texture required in bonus!", data, NULL);
+}
+
+int	check_texture_file(char *path)
+{
+	int	temp_fd;
+
+	temp_fd = open(path, O_RDONLY);
+	if (temp_fd == -1)
+		ft_error(ERR_OPEN, NULL, path);
+	return (close(temp_fd), 0);
 }

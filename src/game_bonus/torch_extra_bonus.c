@@ -6,7 +6,7 @@
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 20:47:17 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/06/02 20:52:12 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:08:31 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,29 @@ void	print_torch(int current, t_game *game)
 		}
 		y++;
 	}
+}
+
+void	swich_door_state(t_game *game)
+{
+	int	x;
+	int	y;
+
+	x = (int)game->data.player_x;
+	y = (int)game->data.player_y;
+	if (game->map[y - 1][x] == 'C')
+		game->map[y - 1][x] = 'O';
+	else if (game->map[y - 1][x] == 'O')
+		game->map[y - 1][x] = 'C';
+	if (game->map[y + 1][x] == 'C')
+		game->map[y + 1][x] = 'O';
+	else if (game->map[y + 1][x] == 'O')
+		game->map[y + 1][x] = 'C';
+	if (game->map[y][x - 1] == 'C')
+		game->map[y][x - 1] = 'O';
+	else if (game->map[y][x - 1] == 'O')
+		game->map[y][x - 1] = 'C';
+	if (game->map[y][x + 1] == 'C')
+		game->map[y][x + 1] = 'O';
+	else if (game->map[y][x + 1] == 'O')
+		game->map[y][x + 1] = 'C';
 }

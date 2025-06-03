@@ -6,7 +6,7 @@
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 19:48:15 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/05/06 20:11:27 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 11:09:56 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	load_wall_textures(t_game *game)
 	game->textures[1] = load_xpm_texture(game->data.so, game);
 	game->textures[2] = load_xpm_texture(game->data.we, game);
 	game->textures[3] = load_xpm_texture(game->data.ea, game);
+	game->textures[4] = load_xpm_texture("./textures/door_texture.xpm", game);
 }
 
 void	init_nextraystep(t_ray *ray)

@@ -6,11 +6,11 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:10:04 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/02 14:37:49 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 11:12:52 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	check_arg(int argc, char **argv)
 {
