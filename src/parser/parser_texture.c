@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:42:23 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/02 21:36:38 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:48:51 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ char	*save_texture(char *texture, t_data *data)
 		free(cpyline[i++]);
 	free(cpyline);
 	free(aux);
+	if (ft_strncmp(result + ft_strlen(result) - 4, ".xpm", 4) != 0)
+		ft_error(ERR_XPMEXT, data, result);
 	fd = open(result, O_RDONLY);
 	if (fd == -1)
-		ft_error(ERR_READ, data, result);
+		ft_error(ERR_OPEN, data, result);
 	aux = get_next_line(fd);
 	if (!aux)
 		ft_error(ERR_EMPTY, data, result);

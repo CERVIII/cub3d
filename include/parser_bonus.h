@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:33 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/03 11:17:43 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:49:42 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define ERR_ARG "Not valid arguments"
 # define ERR_NAME "The name is very short"
 # define ERR_EXT "The .cub extension is needed"
+# define ERR_XPMEXT "The .xpm extension is needed in textures"
 # define ERR_FD "The file does not exist "
 # define ERR_READ "Do not have permission to read this file "
 # define ERR_OPEN "Error opening file "
