@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/31 18:13:34 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:57:48 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,6 @@ int	handle_loop(t_game *game)
 {
 	clear_image(&game->image);
 	handle_movements(game);
-	if (MINIMAP)
-	{
-		print_map2d(game);
-		print_player(game->data.player_xpx, game->data.player_ypx, game);
-	}
 	raycasting(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win,
 		game->image.img, 0, 0);

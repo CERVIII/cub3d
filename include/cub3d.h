@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:47:07 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/07 10:31:21 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:58:16 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
 # endif
-
-# define MINIMAP 0
-
-/* # define PJ "./Sprites/Pacman_HD.xpm"
-# define PJL "./Sprites/pac_semi_left.xpm"
-# define PJR "./Sprites/pac_semi_right.xpm"
-# define PJD "./Sprites/pac_semi_down.xpm"
-# define PJU "./Sprites/pac_semi_up.xpm"
-# define CO "./Sprites/coin.xpm"
-# define EX "./Sprites/portal_close.xpm"
-# define FL "./Sprites/floor1.xpm"
-# define WL "./Sprites/wall.xpm" */
 
 # define NORMAL  "\x1B[0m"
 # define RED  "\x1B[31m"

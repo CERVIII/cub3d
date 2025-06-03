@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:46:50 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/03 12:03:43 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:59:06 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,10 @@ int	handle_loop(t_game *game)
 	clear_image(MINIMAP_X, MINIMAP_Y, 1, &game->image_minimap);
 	ft_memset(game->image.data, 0, SCREEN_X * SCREEN_Y * (game->image.bpp / 8));
 	handle_movements(game);
-	if (MINIMAP)
-	{
-		ft_memset(game->image_minimap.data, 0xFFFFFF,
-			game->image_minimap.len * MINIMAP_Y);
-		print_map2d(game);
-		print_player(game->data.player_xpx, game->data.player_ypx, game);
-	}
+	ft_memset(game->image_minimap.data, 0xFFFFFF,
+		game->image_minimap.len * MINIMAP_Y);
+	print_map2d(game);
+	print_player(game->data.player_xpx, game->data.player_ypx, game);
 	raycasting(game);
 	torch_loop(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.mlx_win,
