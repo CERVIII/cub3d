@@ -6,7 +6,7 @@
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:18:59 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/05/31 20:18:35 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:13:14 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	paint_texture(int x, int draw_start, t_ray *ray, t_game *game)
 		else
 			orientation = 1;
 	}
+	if (game->map[ray->map_y][ray->map_x] == 'C')
+		orientation = 4;
 	put_pixel(x, draw_start,
 		get_color(draw_start, orientation, ray, game), &game->image);
 }

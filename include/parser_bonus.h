@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:50:33 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/01 22:36:15 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:49:42 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define ERR_ARG "Not valid arguments"
 # define ERR_NAME "The name is very short"
 # define ERR_EXT "The .cub extension is needed"
+# define ERR_XPMEXT "The .xpm extension is needed in textures"
 # define ERR_FD "The file does not exist "
 # define ERR_READ "Do not have permission to read this file "
 # define ERR_OPEN "Error opening file "
@@ -27,6 +28,7 @@
 # define ERR_COL "Floor or ceiling value's are not numbers"
 # define ERR_CMAP "Invalid characters detected"
 # define ERR_WMAP "Invalid map, not closed"
+# define ERR_DMAP "Invalid map, door not between walls"
 # define ERR_NPL "No player position detected"
 # define ERR_MPL "Multiple player position detected"
 
@@ -63,6 +65,7 @@ void	parser_file(int argc, char **argv, t_data *data);
 char	*save_texture(char *texture, t_data *data);
 int		*save_color(char *texture, t_data *data);
 void	parser_texture(t_data *data);
+int		check_texture_file(char *path);
 
 /* PARSER_MAP.C */
 void	copy_map(t_data *data, char **map);

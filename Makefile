@@ -6,7 +6,7 @@
 #    By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 16:06:04 by pcervill          #+#    #+#              #
-#    Updated: 2025/06/02 21:36:24 by mpenas-z         ###   ########.fr        #
+#    Updated: 2025/06/03 10:50:53 by mpenas-z         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CFLAGS =	-Wall -Werror -Wextra -I ./include -I ./libft -I $(MLX_DIR) \
 RM = rm -f
 
 SRC_SRC =	main.c utils.c free_utils.c
-BSRC_SRC =	main_bonus.c utils.c free_utils.c
+BSRC_SRC =	main_bonus.c utils.c free_utils_bonus.c
 PRS_SRC =	parser.c parser_file.c parser_texture.c parser_map.c parser_check.c
 BPRS_SRC =	parser_bonus.c parser_file_bonus.c parser_texture_bonus.c \
 			parser_map_bonus.c parser_check_bonus.c

@@ -6,11 +6,11 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:09:40 by pcervill          #+#    #+#             */
-/*   Updated: 2024/10/08 12:20:20 by pcervill         ###   ########.fr       */
+/*   Updated: 2025/06/03 11:12:41 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	parser(int argc, char **argv, t_data *data)
 {

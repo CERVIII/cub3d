@@ -6,7 +6,7 @@
 /*   By: mpenas-z <mpenas-z@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:48:08 by mpenas-z          #+#    #+#             */
-/*   Updated: 2025/06/02 20:51:26 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:02:32 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define S 1
 # define D 2
 # define W 13
+# define E 14
 # define LEFT 123
 # define RIGHT 124
 # define DOWN 125
@@ -48,6 +49,7 @@
 # define D_L 100
 # define S_L 115
 # define W_L 119
+# define E_L 101
 # define L 65361
 # define U 65362
 # define R 65363
@@ -62,6 +64,7 @@ typedef struct s_keys
 	int	w;
 	int	d;
 	int	s;
+	int	e;
 	int	right;
 	int	left;
 	int	esc;
@@ -161,7 +164,7 @@ typedef struct s_game
 	double		minimap_scale;
 	char		**map;
 	char		**texture;
-	t_texture	textures[4];
+	t_texture	textures[5];
 	t_torch		torch;
 	t_keys		keys;
 	t_player	player;
@@ -226,6 +229,7 @@ void		torch_loop(t_game *game);
 void		put_torch_pixel(int x, int y, int color, t_game *game);
 void		print_scaled_pixel(int x, int y, int scale, t_game *game);
 void		print_torch(int current, t_game *game);
+void		swich_door_state(t_game *game);
 
 /* GAME.C */
 void		init_mlx(t_mlx *mlx, t_img *image, t_img *image_minimap);

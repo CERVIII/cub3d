@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:45:15 by pcervill          #+#    #+#             */
-/*   Updated: 2025/05/31 19:07:25 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 11:23:50 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	pulse_key(int key, t_game *game)
 		game->keys.s = 1;
 	if (key == D || key == D_L)
 		game->keys.d = 1;
+	if (key == E || key == E_L)
+		game->keys.e = 1;
 	if (key == LEFT || key == L)
 		game->keys.left = 1;
 	if (key == RIGHT || key == R)
@@ -47,6 +49,8 @@ int	release_key(int key, t_game *game)
 		game->keys.s = 0;
 	if (key == D || key == D_L)
 		game->keys.d = 0;
+	if (key == E || key == E_L)
+		game->keys.e = 0;
 	if (key == LEFT || key == L)
 		game->keys.left = 0;
 	if (key == RIGHT || key == R)

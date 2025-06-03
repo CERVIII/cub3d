@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:16:08 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/02 21:03:29 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:02:47 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	try_move(double dx, double dy, t_game *g)
 	new_y = g->data.player_y + dy;
 	if (g->map[(int)new_y][(int)new_x] != '1'
 		&& g->map[(int)new_y][(int)new_x] != ' '
+		&& g->map[(int)new_y][(int)new_x] != 'C'
 		&& g->map[(int)new_y][(int)g->data.player_x] != '1'
 		&& g->map[(int)g->data.player_y][(int)new_x] != '1')
 	{
@@ -86,6 +87,8 @@ static void	rotation_player(t_game *game)
 
 int	handle_movements(t_game *game)
 {
+	if (game->keys.e)
+		swich_door_state(game);
 	move_player(game);
 	rotation_player(game);
 	return (0);

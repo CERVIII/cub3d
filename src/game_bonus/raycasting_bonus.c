@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:26:27 by pcervill          #+#    #+#             */
-/*   Updated: 2025/06/01 16:27:59 by mpenas-z         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:12:10 by mpenas-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	touch(double px, double py, t_game *game)
 
 	x = (int)px;
 	y = (int)py;
-	if (game->map[y][x] == '1' || game->map[y][x] == ' ')
+	if (game->map[y][x] == '1' || game->map[y][x] == ' '
+		|| game->map[y][x] == 'C')
 		return (1);
 	return (0);
 }
